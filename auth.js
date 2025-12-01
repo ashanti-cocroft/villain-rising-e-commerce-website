@@ -1,27 +1,23 @@
 let currentUser = null;
 let userCart = [];
-let allUsers = []; // Store all registered users in memory
+let allUsers = [];
 
-// Initialize on page load: Use a slight delay to ensure the DOM elements (like .nav-right) are fully processed by index.html.
 document.addEventListener("DOMContentLoaded", () => {
-  // Use setTimeout to defer execution slightly, helping stability.
   setTimeout(() => {
     updateAuthUI();
     updateVaultDisplay();
   }, 50);
 });
 
-// Update UI based on auth state
+// Update UI based on auth state (unchanged)
 function updateAuthUI() {
   const navRight = document.querySelector(".nav-right");
   if (!navRight) return;
 
-  // Remove existing auth elements
   document.getElementById("authButton")?.remove();
   document.getElementById("userInfo")?.remove();
 
   if (currentUser) {
-    // Show user info and logout
     const userInfo = document.createElement("div");
     userInfo.id = "userInfo";
     userInfo.className = "user-info";
@@ -32,10 +28,8 @@ function updateAuthUI() {
         <button class="logout-btn" onclick="handleLogout()">🚪 Logout</button>
       </div>
     `;
-    // Prepend user info, ensuring it's before the vault icon if present
     navRight.insertBefore(userInfo, navRight.firstChild);
   } else {
-    // Show login button
     const authButton = document.createElement("button");
     authButton.id = "authButton";
     authButton.className = "auth-button";
@@ -45,22 +39,36 @@ function updateAuthUI() {
   }
 }
 
-// Show authentication modal
+// Show authentication modal (Now dynamically sets content based on theme)
 function showAuthModal() {
   const existingModal = document.getElementById("authModal");
   if (existingModal) existingModal.remove();
 
+  const isHero = document.body.classList.contains("hero-theme");
+
   const modal = document.createElement("div");
   modal.id = "authModal";
   modal.className = "auth-modal";
+
+  // Dynamic Text Lookups
+  const title = isHero ? "🛡️ Celestial Login" : "🔐 Villain Login";
+  const subtitle = isHero
+    ? "Access your Sacred Sanctuary"
+    : "Access your evil arsenal";
+  const submitText = isHero ? "Ascend to Sanctuary" : "Enter The Vault";
+  const emailPlaceholder = isHero
+    ? "angel@celestial.com"
+    : "villain@darkside.com";
+  const usernamePlaceholder = isHero ? "Archangel117" : "DarkLord2024";
+
   modal.innerHTML = `
     <div class="auth-modal-overlay" onclick="closeAuthModal()"></div>
     <div class="auth-modal-content">
       <button class="auth-modal-close" onclick="closeAuthModal()">×</button>
       
       <div class="auth-header">
-        <h2 id="authTitle">🔐 Villain Login</h2>
-        <p id="authSubtitle">Access your evil arsenal</p>
+        <h2 id="authTitle">${title}</h2>
+        <p id="authSubtitle">${subtitle}</p>
       </div>
 
       <div class="auth-tabs">
@@ -71,13 +79,13 @@ function showAuthModal() {
       <form id="authForm" onsubmit="handleAuthSubmit(event)">
         <div class="form-group">
           <label>📧 Email</label>
-          <input type="email" id="authEmail" required placeholder="villain@darkside.com">
+          <input type="email" id="authEmail" required placeholder="${emailPlaceholder}">
           <span class="error-message" id="emailError"></span>
         </div>
 
         <div class="form-group" id="usernameGroup" style="display: none;">
           <label>👤 Username</label>
-          <input type="text" id="authUsername" placeholder="DarkLord2024">
+          <input type="text" id="authUsername" placeholder="${usernamePlaceholder}">
           <span class="error-message" id="usernameError"></span>
         </div>
 
@@ -104,13 +112,13 @@ function showAuthModal() {
         </div>
 
         <button type="submit" class="auth-submit-btn" id="authSubmitBtn">
-          Enter The Vault
+          ${submitText}
         </button>
       </form>
 
       <div class="auth-toggle">
         <p id="authToggleText">
-          Don't have an account? 
+          ${isHero ? "Seeking enlightenment?" : "Don't have an account?"} 
           <a href="#" onclick="switchAuthMode('register'); return false;">Register here</a>
         </p>
       </div>
@@ -118,30 +126,41 @@ function showAuthModal() {
   `;
 
   document.body.appendChild(modal);
-  // Short delay for CSS transition hook
   setTimeout(() => modal.classList.add("active"), 10);
 }
 
-// Close authentication modal
+// Close authentication modal (unchanged)
 function closeAuthModal() {
   const modal = document.getElementById("authModal");
   if (modal) {
     modal.classList.remove("active");
-    // Wait for the CSS transition to finish before removing from DOM
     setTimeout(() => modal.remove(), 300);
   }
 }
 
-// Switch between login and register modes
+// Switch between login and register modes (Now fully dynamic)
 function switchAuthMode(mode) {
   const isLogin = mode === "login";
+  const isHero = document.body.classList.contains("hero-theme");
+
+  // Dynamic Text Lookups
+  const registerTitle = isHero ? "🌟 Join The Light" : "🦹‍♂️ Join The Dark Side";
+  const loginTitle = isHero ? "🛡️ Celestial Login" : "🔐 Villain Login";
+  const registerSubtitle = isHero
+    ? "Create your heroic avatar"
+    : "Create your villain account";
+  const loginSubtitle = isHero
+    ? "Access your Sacred Sanctuary"
+    : "Access your evil arsenal";
+  const registerBtnText = isHero ? "Join The Ascent" : "Join The Dark Side";
+  const loginBtnText = isHero ? "Ascend to Sanctuary" : "Enter The Vault";
 
   document.getElementById("authTitle").textContent = isLogin
-    ? "🔐 Villain Login"
-    : "🦹‍♂️ Join The Dark Side";
+    ? loginTitle
+    : registerTitle;
   document.getElementById("authSubtitle").textContent = isLogin
-    ? "Access your evil arsenal"
-    : "Create your villain account";
+    ? loginSubtitle
+    : registerSubtitle;
 
   const tabs = document.querySelectorAll(".auth-tab");
   tabs.forEach((tab, index) => {
@@ -160,12 +179,16 @@ function switchAuthMode(mode) {
     : "block";
 
   document.getElementById("authSubmitBtn").textContent = isLogin
-    ? "Enter The Vault"
-    : "Join The Dark Side";
+    ? loginBtnText
+    : registerBtnText;
 
   document.getElementById("authToggleText").innerHTML = isLogin
-    ? 'Don\'t have an account? <a href="#" onclick="switchAuthMode(\'register\'); return false;">Register here</a>'
-    : 'Already a villain? <a href="#" onclick="switchAuthMode(\'login\'); return false;">Login here</a>';
+    ? `${
+        isHero ? "Seeking enlightenment?" : "Don't have an account?"
+      } <a href="#" onclick="switchAuthMode('register'); return false;">Register here</a>`
+    : `${
+        isHero ? "Already ascended?" : "Already a villain?"
+      } <a href="#" onclick="switchAuthMode('login'); return false;">Login here</a>`;
 
   clearAuthErrors();
 

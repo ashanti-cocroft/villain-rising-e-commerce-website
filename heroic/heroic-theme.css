@@ -1,0 +1,1019 @@
+/* ===========================================
+   THEME TOGGLE SYSTEM STYLES (CORRECTED)
+   =========================================== */
+
+/* 1. Neutral Base and Villain Default for the Toggle Button */
+.theme-toggle {
+  position: fixed;
+  bottom: 80px; /* Above the glitch trigger */
+  right: 30px;
+  /* Default/Villain Styling */
+  background: linear-gradient(135deg, rgb(139, 0, 0), rgb(220, 20, 60));
+  border: 2px solid rgba(255, 0, 0, 0.6);
+  box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+  background: linear-gradient(135deg, rgb(180, 0, 0), rgb(255, 30, 70));
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+.theme-icon {
+  font-size: 1.2rem;
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ===========================================
+   HERO THEME OVERRIDES - CELESTIAL ASCENT
+   =========================================== */
+
+/* Body and Background */
+body.hero-theme {
+  background: linear-gradient(135deg, #e8f5ff 0%, #fffacd 50%, #fff0f5 100%);
+  background-size: 400% 400%;
+  animation: celestialShift 20s ease infinite;
+  color: #1a1a2e; /* Dark text */
+}
+
+@keyframes celestialShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Override noise overlay for hero theme */
+body.hero-theme .noise-overlay {
+  opacity: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="sparkle"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" /><feColorMatrix type="saturate" values="1"/></filter><rect width="300" height="300" filter="url(%23sparkle)" opacity="0.03" fill="%23FFD700"/></svg>');
+}
+
+body.hero-theme .scanlines {
+  display: none;
+}
+
+/* Floating particles effect */
+body.hero-theme::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, gold, transparent),
+    radial-gradient(1px 1px at 50% 50%, #87ceeb, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, gold, transparent);
+  background-size: 200% 200%;
+  animation: floatingParticles 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 98;
+  opacity: 0.6;
+}
+
+@keyframes floatingParticles {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.8;
+  }
+}
+
+/* Navbar - Hero Theme */
+body.hero-theme .navbar {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 2px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 2px 30px rgba(255, 215, 0, 0.3),
+    0 0 60px rgba(135, 206, 235, 0.2);
+}
+
+/* 🌟 FIX: Tighter horizontal spacing for main nav links in Hero Theme */
+body.hero-theme .nav-link {
+  gap: 1.25rem;
+}
+
+body.hero-theme .logo {
+  color: transparent;
+  background: linear-gradient(90deg, #4169e1, #87ceeb, #ffd700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: celestialGlow 3s ease infinite;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+@keyframes celestialGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.3);
+  }
+}
+
+body.hero-theme .logo:hover {
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.9);
+  transform: scale(1.05);
+}
+
+body.hero-theme .nav-link > li > a {
+  color: rgba(26, 26, 46, 0.9);
+}
+
+body.hero-theme .nav-link > li > a:hover {
+  color: #0066ff;
+  text-shadow: 0 0 10px rgba(0, 100, 255, 0.3);
+}
+
+/* Mega Menu - Hero Theme */
+body.hero-theme .mega-menu {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 100, 255, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 100, 255, 0.2);
+}
+
+body.hero-theme .mega-menu-title {
+  color: #0066ff;
+  border-bottom: 1px solid rgba(0, 100, 255, 0.2);
+}
+
+/* 🌟 FIX: Tighter vertical spacing for mega menu links in Hero Theme */
+body.hero-theme .mega-menu-links {
+  gap: 0.4rem;
+}
+
+body.hero-theme .mega-menu-links a {
+  color: rgba(26, 26, 46, 0.7);
+}
+
+body.hero-theme .mega-menu-links a:hover {
+  color: #0066ff;
+  text-shadow: 0 0 8px rgba(0, 100, 255, 0.3);
+}
+
+/* Vault Icon - Hero Theme */
+body.hero-theme .vault-icon {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 250, 205, 0.9) 100%
+  );
+  border: 2px solid transparent;
+  background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 250, 205, 0.9)
+    ),
+    linear-gradient(135deg, #4169e1, #ffd700);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+body.hero-theme .vault-icon:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 250, 205, 1) 100%
+  );
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 50px rgba(135, 206, 235, 0.3);
+}
+
+body.hero-theme .vault-glow {
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+  animation: vaultPulse 2s ease-in-out infinite;
+}
+
+@keyframes vaultPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1));
+  }
+}
+
+body.hero-theme .vault-text {
+  color: #1a1a2e;
+}
+
+body.hero-theme .vault-count {
+  background: #0066ff;
+  color: white;
+}
+
+/* Hamburger - Hero Theme */
+body.hero-theme .hamburger span {
+  background: #0066ff;
+  box-shadow: 0 0 5px rgba(0, 100, 255, 0.5);
+}
+
+/* Hero Section - Hero Theme */
+body.hero-theme .hero-section {
+  background: linear-gradient(
+    180deg,
+    rgba(135, 206, 235, 0.3) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 250, 205, 0.4) 100%
+  );
+}
+
+body.hero-theme .video-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 250, 205, 0.7),
+    rgba(255, 255, 255, 0.8)
+  );
+}
+
+body.hero-theme .tagline h1 {
+  background: linear-gradient(
+    90deg,
+    #4169e1 0%,
+    #87ceeb 25%,
+    #ffd700 50%,
+    #87ceeb 75%,
+    #4169e1 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holyShimmer 4s ease infinite;
+  filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8))
+    drop-shadow(0 0 80px rgba(135, 206, 235, 0.6));
+}
+
+@keyframes holyShimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8))
+      drop-shadow(0 0 80px rgba(135, 206, 235, 0.6)) brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 60px rgba(255, 215, 0, 1))
+      drop-shadow(0 0 100px rgba(135, 206, 235, 0.8)) brightness(1.3);
+  }
+}
+
+body.hero-theme .button button {
+  background: linear-gradient(135deg, #4169e1, #87ceeb, #ffd700);
+  background-size: 200% 200%;
+  animation: divineButtonGlow 3s ease infinite;
+  box-shadow: 0 5px 30px rgba(255, 215, 0, 0.6),
+    0 0 60px rgba(135, 206, 235, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+@keyframes divineButtonGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 5px 30px rgba(255, 215, 0, 0.6),
+      0 0 60px rgba(135, 206, 235, 0.4);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 8px 40px rgba(255, 215, 0, 0.9),
+      0 0 80px rgba(135, 206, 235, 0.7);
+  }
+}
+
+body.hero-theme .button button:hover {
+  background: linear-gradient(135deg, #5a7fd6, #a0d8f0, #ffe066);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 50px rgba(255, 215, 0, 0.8),
+    0 0 100px rgba(135, 206, 235, 0.6);
+}
+
+body.hero-theme .description {
+  color: rgba(26, 26, 46, 0.8);
+}
+
+/* Section Titles - Hero Theme */
+body.hero-theme .section-title {
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    #4169e1 0%,
+    #87ceeb 25%,
+    #ffd700 50%,
+    #87ceeb 75%,
+    #4169e1 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: celestialTitle 4s ease infinite;
+  text-shadow: none;
+  filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6))
+    drop-shadow(0 0 50px rgba(135, 206, 235, 0.4));
+}
+
+@keyframes celestialTitle {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Product Cards - Hero Theme */
+body.hero-theme .product-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid transparent;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.95)
+    ),
+    linear-gradient(135deg, #4169e1, #87ceeb, #ffd700);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+}
+
+body.hero-theme .product-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4),
+    0 0 80px rgba(135, 206, 235, 0.3);
+  animation: cardAscend 0.6s ease forwards;
+}
+
+@keyframes cardAscend {
+  0% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(1.15);
+  }
+}
+
+body.hero-theme .product-image {
+  filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5))
+    drop-shadow(0 0 50px rgba(135, 206, 235, 0.3));
+  animation: floatProduct 3s ease-in-out infinite;
+}
+
+@keyframes floatProduct {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+body.hero-theme .product-name {
+  color: #1a1a2e;
+  background: linear-gradient(90deg, #4169e1, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.hero-theme .product-price {
+  color: transparent;
+  background: linear-gradient(90deg, #4169e1, #87ceeb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+}
+
+body.hero-theme .product-desc {
+  color: rgba(26, 26, 46, 0.7);
+}
+
+body.hero-theme .add-to-cart {
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+}
+
+body.hero-theme .add-to-cart:hover {
+  background: linear-gradient(135deg, #0052cc, #0099ff);
+  box-shadow: 0 5px 20px rgba(0, 100, 255, 0.5);
+}
+
+/* Testimonials - Hero Theme */
+body.hero-theme .testimonial-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(0, 100, 255, 0.2);
+}
+
+body.hero-theme .testimonial-card:hover {
+  border-color: rgba(0, 100, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 100, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
+}
+
+body.hero-theme .testimonial-text {
+  color: rgba(26, 26, 46, 0.85);
+}
+
+body.hero-theme .testimonial-author {
+  color: #0066ff;
+}
+
+body.hero-theme .testimonial-role {
+  color: rgba(26, 26, 46, 0.6);
+}
+
+/* Vault Panel - Hero Theme */
+body.hero-theme .vault-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+body.hero-theme .vault-panel {
+  background: rgba(255, 255, 255, 0.98);
+  border-left: 2px solid rgba(0, 100, 255, 0.4);
+  box-shadow: -10px 0 30px rgba(0, 100, 255, 0.2);
+}
+
+body.hero-theme .vault-header {
+  border-bottom: 2px solid rgba(0, 100, 255, 0.3);
+}
+
+body.hero-theme .vault-title {
+  color: #0066ff;
+  text-shadow: 0 0 15px rgba(0, 100, 255, 0.3);
+}
+
+body.hero-theme .vault-close {
+  color: #1a1a2e;
+}
+
+body.hero-theme .vault-close:hover {
+  background: rgba(0, 100, 255, 0.2);
+  color: #0066ff;
+}
+
+body.hero-theme .vault-empty-text {
+  color: rgba(26, 26, 46, 0.6);
+}
+
+body.hero-theme .vault-item {
+  background: rgba(0, 100, 255, 0.05);
+  border: 1px solid rgba(0, 100, 255, 0.2);
+}
+
+body.hero-theme .vault-item:hover {
+  background: rgba(0, 100, 255, 0.1);
+  border-color: rgba(0, 100, 255, 0.4);
+}
+
+body.hero-theme .vault-item-name {
+  color: #1a1a2e;
+}
+
+body.hero-theme .vault-item-price {
+  color: #0066ff;
+}
+
+body.hero-theme .remove-btn {
+  background: rgba(0, 100, 255, 0.4);
+}
+
+body.hero-theme .remove-btn:hover {
+  background: rgba(0, 100, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 100, 255, 0.6);
+}
+
+body.hero-theme .vault-footer {
+  border-top: 2px solid rgba(0, 100, 255, 0.3);
+  background: rgba(255, 255, 255, 1);
+}
+
+body.hero-theme .vault-total {
+  color: #1a1a2e;
+}
+
+body.hero-theme .vault-total-amount {
+  color: #0066ff;
+  text-shadow: 0 0 10px rgba(0, 100, 255, 0.3);
+}
+
+body.hero-theme .vault-checkout-btn {
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  box-shadow: 0 5px 20px rgba(0, 100, 255, 0.4);
+}
+
+body.hero-theme .vault-checkout-btn:hover {
+  background: linear-gradient(135deg, #0052cc, #0099ff);
+  box-shadow: 0 8px 25px rgba(0, 100, 255, 0.6);
+}
+
+/* Footer - Hero Theme */
+body.hero-theme .footer {
+  background: #ffffff;
+  border-top: 3px solid rgba(0, 100, 255, 0.4);
+}
+
+body.hero-theme .footer-title {
+  color: #0066ff;
+}
+
+body.hero-theme .footer-links a {
+  color: rgba(26, 26, 46, 0.7);
+}
+
+body.hero-theme .footer-links a:hover {
+  color: #0066ff;
+}
+
+body.hero-theme .signup-title {
+  color: #1a1a2e;
+}
+
+body.hero-theme .email-input {
+  border: 1px solid rgba(0, 100, 255, 0.4);
+  background: rgba(0, 100, 255, 0.05);
+  color: #1a1a2e;
+}
+
+body.hero-theme .email-input:focus {
+  border-color: #0066ff;
+  box-shadow: 0 0 10px rgba(0, 100, 255, 0.4);
+}
+
+body.hero-theme .signup-btn {
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+}
+
+body.hero-theme .signup-btn:hover {
+  background: linear-gradient(135deg, #0052cc, #0099ff);
+}
+
+body.hero-theme .copyright {
+  color: rgba(26, 26, 46, 0.5);
+}
+
+body.hero-theme .footer-legal a {
+  color: rgba(26, 26, 46, 0.7);
+}
+
+body.hero-theme .footer-legal a:hover {
+  color: #0066ff;
+}
+
+body.hero-theme .footer-select {
+  background: rgba(0, 100, 255, 0.1);
+  color: #1a1a2e;
+  border: 1px solid rgba(0, 100, 255, 0.3);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230066ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+body.hero-theme .footer-select option {
+  background: #f0f4f8;
+  color: #1a1a2e;
+}
+
+/* Theme Toggle Button - Hero Theme */
+body.hero-theme .theme-toggle {
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  border: 2px solid rgba(0, 100, 255, 0.6);
+  box-shadow: 0 5px 20px rgba(0, 100, 255, 0.4);
+}
+
+body.hero-theme .theme-toggle:hover {
+  background: linear-gradient(135deg, #0052cc, #0099ff);
+  box-shadow: 0 8px 25px rgba(0, 100, 255, 0.6);
+}
+
+/* Glitch Trigger - Hero Theme */
+body.hero-theme .glitch-trigger {
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  border: 2px solid rgba(0, 100, 255, 0.6);
+  box-shadow: 0 5px 20px rgba(0, 100, 255, 0.4);
+}
+
+body.hero-theme .glitch-trigger:hover {
+  background: linear-gradient(135deg, #0052cc, #0099ff);
+  box-shadow: 0 8px 25px rgba(0, 100, 255, 0.6);
+}
+
+/* Auth Styles - Hero Theme */
+body.hero-theme .auth-button {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0066ff;
+  border: 2px solid #0066ff;
+  box-shadow: 0 0 10px rgba(0, 100, 255, 0.3);
+}
+
+body.hero-theme .auth-button:hover {
+  color: white;
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  box-shadow: 0 10px 30px rgba(0, 100, 255, 0.5);
+  border-color: white;
+}
+
+body.hero-theme .user-display {
+  background: rgba(0, 100, 255, 0.1);
+  border: 1px solid rgba(0, 100, 255, 0.3);
+}
+
+body.hero-theme .user-display:hover {
+  background: rgba(0, 100, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0, 100, 255, 0.3);
+}
+
+body.hero-theme .user-name {
+  color: #1a1a2e;
+}
+
+body.hero-theme .logout-btn {
+  background: rgba(0, 100, 255, 0.2);
+  border: 1px solid rgba(0, 100, 255, 0.4);
+  color: #1a1a2e;
+}
+
+body.hero-theme .logout-btn:hover {
+  background: rgba(0, 100, 255, 0.4);
+  border-color: rgba(0, 100, 255, 0.6);
+  box-shadow: 0 0 10px rgba(0, 100, 255, 0.4);
+}
+
+body.hero-theme .auth-modal-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.hero-theme .auth-modal-content {
+  background: linear-gradient(135deg, #ffffff, #f0f4f8);
+  border: 2px solid rgba(0, 100, 255, 0.7);
+  box-shadow: 0 20px 80px rgba(0, 100, 255, 0.2);
+}
+
+body.hero-theme .auth-header h2 {
+  color: #0066ff;
+  text-shadow: 0 0 20px rgba(0, 100, 255, 0.5);
+}
+
+body.hero-theme .auth-header p {
+  color: rgba(26, 26, 46, 0.7);
+}
+
+body.hero-theme .auth-tab {
+  background: rgba(0, 100, 255, 0.05);
+  border: 2px solid rgba(0, 100, 255, 0.5);
+  color: rgba(26, 26, 46, 0.7);
+}
+
+body.hero-theme .auth-tab:hover {
+  background: rgba(0, 100, 255, 0.15);
+  color: #1a1a2e;
+}
+
+body.hero-theme .auth-tab.active {
+  background: #0066ff;
+  border-color: #00ccff;
+  color: white;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 100, 255, 0.5);
+}
+
+body.hero-theme .form-group label {
+  color: rgba(26, 26, 46, 0.9);
+}
+
+body.hero-theme .form-group input {
+  background: rgba(0, 100, 255, 0.05);
+  border: 1px solid rgba(0, 100, 255, 0.3);
+  color: #1a1a2e;
+}
+
+body.hero-theme .form-group input:focus {
+  border-color: #0066ff;
+  background: rgba(0, 100, 255, 0.08);
+  box-shadow: 0 0 15px rgba(0, 100, 255, 0.3);
+}
+
+body.hero-theme .form-group input::placeholder {
+  color: rgba(26, 26, 46, 0.4);
+}
+
+body.hero-theme .toggle-password {
+  color: rgba(26, 26, 46, 0.6);
+}
+
+body.hero-theme .toggle-password:hover {
+  color: rgba(26, 26, 46, 0.9);
+}
+
+body.hero-theme .error-message {
+  color: #ff0066;
+}
+
+body.hero-theme .auth-submit-btn {
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  color: white;
+  border: 2px solid white;
+  box-shadow: 0 0 20px rgba(0, 100, 255, 0.5);
+}
+
+body.hero-theme .auth-submit-btn:hover {
+  background: linear-gradient(135deg, #0052cc, #0099ff);
+  box-shadow: 0 10px 40px rgba(0, 100, 255, 0.8);
+}
+
+body.hero-theme .auth-toggle p {
+  color: rgba(26, 26, 46, 0.7);
+}
+
+body.hero-theme .auth-toggle a {
+  color: #0066ff;
+}
+
+body.hero-theme .auth-toggle a:hover {
+  color: #0052cc;
+}
+
+/* Smooth Theme Transition */
+body.theme-transitioning * {
+  transition: background 0.6s ease, color 0.6s ease, border-color 0.6s ease,
+    box-shadow 0.6s ease, text-shadow 0.6s ease !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 65px;
+    right: 15px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .theme-text {
+    display: none;
+  }
+
+  .theme-icon {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===========================================
+   DIVINE LIGHT EFFECT (Replaces Glitch)
+   =========================================== */
+
+.divine-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  background: radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 255, 255, 0.4) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 0% 50%,
+      rgba(255, 215, 0, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 100% 50%,
+      rgba(135, 206, 235, 0.3) 0%,
+      transparent 50%
+    );
+  transition: opacity 0.5s ease;
+}
+
+.divine-overlay.active {
+  opacity: 1;
+  animation: heavensGateOpening 3s ease-in-out infinite;
+}
+
+@keyframes heavensGateOpening {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.3);
+  }
+}
+
+.holy-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  background: radial-gradient(
+      ellipse at top,
+      rgba(255, 255, 255, 0.5) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at bottom,
+      rgba(255, 215, 0, 0.4) 0%,
+      transparent 60%
+    );
+  animation: pulseLight 4s ease-in-out infinite;
+  transition: opacity 0.5s ease;
+}
+
+.holy-glow.active {
+  opacity: 1;
+}
+
+@keyframes pulseLight {
+  0%,
+  100% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  50% {
+    filter: brightness(1.5);
+    transform: scale(1.02);
+  }
+}
+
+/* Divine glow for text elements */
+.divine-active {
+  position: relative;
+  animation: divine-text 2s ease-in-out infinite !important;
+}
+
+.divine-active::before,
+.divine-active::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+
+.divine-active::before {
+  animation: divine-before 2s ease-in-out infinite;
+  color: rgba(255, 215, 0, 0.8);
+  z-index: -1;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+  filter: blur(2px);
+}
+
+.divine-active::after {
+  animation: divine-after 2s ease-in-out reverse infinite;
+  color: rgba(135, 206, 235, 0.8);
+  z-index: -2;
+  text-shadow: 0 0 20px rgba(135, 206, 235, 0.9);
+  filter: blur(2px);
+}
+
+@keyframes divine-text {
+  0%,
+  100% {
+    transform: translateY(0);
+    filter: brightness(1) drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+  }
+  50% {
+    transform: translateY(-3px);
+    filter: brightness(1.4) drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+  }
+}
+
+@keyframes divine-before {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-2px) translateX(-2px);
+    opacity: 1;
+  }
+}
+
+@keyframes divine-after {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(2px) translateX(2px);
+    opacity: 1;
+  }
+}
+
+/* Divine glow for nav links and logo */
+.divine-glow-active {
+  position: relative;
+  animation: divine-link 2s ease-in-out infinite;
+  color: transparent !important;
+  background: linear-gradient(
+    90deg,
+    #4169e1,
+    #ffd700,
+    #87ceeb,
+    #ffd700,
+    #4169e1
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes divine-link {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1) drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.5) drop-shadow(0 0 20px rgba(255, 215, 0, 1));
+  }
+}
+
+.divine-glow-active::before,
+.divine-glow-active::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: divine-glow-pulse 2s ease-in-out infinite;
+}
+
+.divine-glow-active::before {
+  text-shadow: 0 0 30px rgba(255, 215, 0, 1);
+  animation-delay: 0.1s;
+}
+
+.divine-glow-active::after {
+  text-shadow: 0 0 30px rgba(135, 206, 235, 1);
+  animation-delay: 0.2s;
+}
+
+@keyframes divine-glow-pulse {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}

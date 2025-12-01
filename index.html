@@ -7,9 +7,9 @@
       name="description"
       content="Villain Rising - Premium athletic streetwear for your villain era. Performance-driven gym essentials."
     />
-    <!-- Ensure style.css is loaded first -->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="auth-styles.css" />
+    <link rel="stylesheet" href="heroic/heroic-theme.css" />
     <title>Villain Rising - Embrace Your Dark Side</title>
   </head>
   <body>
@@ -20,9 +20,16 @@
     <div class="static-noise" id="staticNoise"></div>
 
     <button
+      class="theme-toggle"
+      id="themeToggle"
+      aria-label="Toggle theme between Villain Rising and Heroic"
+    >
+      😇 Heroic Mode
+    </button>
+    <button
       class="glitch-trigger"
-      id="glitchTrigger"
-      aria-label="Toggle glitch effect"
+      id="effectTrigger"
+      aria-label="Toggle visual effect"
     >
       ⚡ HACK SITE
     </button>
@@ -205,7 +212,7 @@
       <div class="vault-header">
         <div class="vault-title" id="vaultTitle">
           <span>🗝️</span>
-          <span>Villain Vault</span>
+          <span>Vault</span>
         </div>
         <button class="vault-close" id="vaultClose" aria-label="Close cart">
           ×
@@ -228,14 +235,13 @@
           <span class="vault-total-amount" id="vaultTotal">$0.00</span>
         </div>
         <button class="vault-checkout-btn" id="checkoutBtn">
-          Secure Your Arsenal
+          Secure Your Order
         </button>
       </div>
     </div>
 
     <section class="hero-section">
       <div class="video-background">
-        <!-- Video element with error handler for image fallback -->
         <video
           autoplay
           muted
@@ -249,7 +255,6 @@
           <source src="your-video.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
-        <!-- Video Fallback Image -->
         <div
           id="videoFallback"
           style="
@@ -257,7 +262,7 @@
             width: 100%;
             height: 100%;
             background: #220000;
-            background-image: url('https://placehold.co/1920x1080/0A0505/FF0000?text=VILLAIN+RISING+VIDEO+FALLBACK');
+            background-image: url('https://placehold.co/1920x1080/0A0505/FFFFFF?text=SITE+LOADING+FALLBACK');
             background-size: cover;
             background-position: center;
           "
@@ -275,10 +280,10 @@
       </div>
       <div class="description">
         <p>
-          Premium athletic streetwear for your villain era.
+          Premium athletic streetwear.
           <br />Performance-driven gym essentials that transition seamlessly to
           everyday life. <br /><strong
-            >Train like a villain. Dress like one too.</strong
+            >Train for dominance. Dress to impress.</strong
           >
         </p>
       </div>
@@ -294,7 +299,7 @@
             <p class="product-price">$89.99</p>
             <p class="product-desc">
               Premium moisture-wicking fabric with hidden pockets. Perfect for
-              plotting world domination.
+              any mission.
             </p>
             <button
               class="add-to-cart"
@@ -314,8 +319,7 @@
             <h3 class="product-name">Nemesis Runner</h3>
             <p class="product-price">$129.99</p>
             <p class="product-desc">
-              Lightweight performance shoes built for speed and stealth. Chase
-              your enemies in style.
+              Lightweight performance shoes built for speed and stealth.
             </p>
             <button
               class="add-to-cart"
@@ -335,8 +339,7 @@
             <h3 class="product-name">Dark Mode Tank</h3>
             <p class="product-price">$49.99</p>
             <p class="product-desc">
-              Breathable compression fit. Show off your villain physique during
-              intense training sessions.
+              Breathable compression fit. Show off your physique.
             </p>
             <button
               class="add-to-cart"
@@ -356,8 +359,7 @@
             <h3 class="product-name">Mastermind Jacket</h3>
             <p class="product-price">$159.99</p>
             <p class="product-desc">
-              Weather-resistant shell with strategic ventilation. The ultimate
-              statement piece for your villain wardrobe.
+              Weather-resistant shell with strategic ventilation.
             </p>
             <button
               class="add-to-cart"
@@ -374,7 +376,7 @@
     </section>
 
     <section class="testimonials-section">
-      <h2 class="section-title">Villain Testimonials</h2>
+      <h2 class="section-title">Client Testimonials</h2>
       <div class="testimonials-container">
         <article class="testimonial-card">
           <p class="testimonial-text">
@@ -436,7 +438,7 @@
             <li><a href="#stores">Stores</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#careers">Careers</a></li>
-            <li><a href="#loyalty">Villain Loyalty</a></li>
+            <li><a href="#loyalty">Loyalty Program</a></li>
             <li><a href="#sustainability">Sustainability</a></li>
           </ul>
         </div>
@@ -453,9 +455,7 @@
                 required
                 aria-label="Email address"
               />
-              <button type="submit" class="signup-btn">
-                Join the Dark Side
-              </button>
+              <button type="submit" class="signup-btn">Subscribe Now</button>
             </form>
           </div>
         </div>
@@ -490,8 +490,8 @@
       </div>
     </footer>
 
-    <!-- auth.js MUST load first to expose global functions for script.js -->
     <script src="auth.js"></script>
     <script src="script.js"></script>
+    <script src="heroic/heroic-theme.js"></script>
   </body>
 </html>

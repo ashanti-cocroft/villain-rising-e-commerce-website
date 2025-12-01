@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="men-and-women-style.css" />
+    <!-- FIXED: Load universal styles and auth styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="auth-styles.css" />
     <title>Women's Clothing - Villain Rising</title>
   </head>
   <body>
@@ -306,11 +308,17 @@
           <span class="vault-count" id="vaultCount">0</span>
         </div>
 
-        <div class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <!-- FIXED: Changed from div to button and added ID to match script.js -->
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
           <span></span>
           <span></span>
           <span></span>
-        </div>
+        </button>
       </div>
     </nav>
 
@@ -348,11 +356,31 @@
 
     <section class="hero-section">
       <div class="video-background">
-        <video autoplay muted loop playsinline id="heroVideo">
+        <!-- FIXED: Added onerror handler and fallback div -->
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          id="heroVideo"
+          onerror="document.getElementById('videoFallback').style.display='block'; this.style.display='none'; this.parentElement.querySelector('.video-overlay').style.display='block';"
+        >
           <source src="splat.mp4" type="video/mp4" />
           <source src="your-video.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
+        <div
+          id="videoFallback"
+          style="
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #220000;
+            background-image: url('https://placehold.co/1920x1080/0A0505/FF0000?text=BEAUTIFULLY+DANGEROUS+FALLBACK');
+            background-size: cover;
+            background-position: center;
+          "
+        ></div>
         <div class="video-overlay"></div>
       </div>
 
@@ -383,6 +411,7 @@
 
         <div class="carousel-container">
           <div class="products-carousel" id="carousel">
+            <!-- FIXED: Added onclick handler to all product buttons -->
             <div class="product-card">
               <div class="product-image">🦹‍♀️</div>
               <div class="product-info">
@@ -396,6 +425,7 @@
                   data-product="Shadow Strike Leggings"
                   data-price="69.99"
                   data-icon="🦹‍♀️"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -415,6 +445,7 @@
                   data-product="Empress Sports Bra"
                   data-price="49.99"
                   data-icon="💖"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -434,6 +465,7 @@
                   data-product="Chaos Cropped Hoodie"
                   data-price="79.99"
                   data-icon="⚡"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -453,6 +485,7 @@
                   data-product="Venom Tank Top"
                   data-price="39.99"
                   data-icon="🕶️"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -472,6 +505,7 @@
                   data-product="Dominatrix Joggers"
                   data-price="84.99"
                   data-icon="👠"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -491,6 +525,7 @@
                   data-product="Black Widow Cycling Shorts"
                   data-price="54.99"
                   data-icon="⚫"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -510,6 +545,7 @@
                   data-product="Mystic Long Sleeve"
                   data-price="59.99"
                   data-icon="🔮"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -529,6 +565,7 @@
                   data-product="Tyrant Tee"
                   data-price="44.99"
                   data-icon="👑"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -548,6 +585,7 @@
                   data-product="Shadow Strike Leggings (Black)"
                   data-price="69.99"
                   data-icon="🦹‍♀️"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -567,6 +605,7 @@
                   data-product="The Obsidian Set"
                   data-price="119.99"
                   data-icon="🖤"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
                   Secure Item
                 </button>
@@ -584,6 +623,7 @@
     <section class="featured-section">
       <h2 class="section-title">Items of Consequence</h2>
       <div class="products-grid">
+        <!-- FIXED: Added onclick handler to all product buttons -->
         <div class="product-card">
           <div class="product-image">🩱</div>
           <div class="product-info">
@@ -597,6 +637,7 @@
               data-product="Shadow Tech Leggings"
               data-price="89.99"
               data-icon="🩱"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -617,6 +658,7 @@
               data-product="Reborn Tactical Jacket"
               data-price="129.99"
               data-icon="🧥"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -637,6 +679,7 @@
               data-product="Villain's Pride Crop Top"
               data-price="49.99"
               data-icon="👚"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -657,6 +700,7 @@
               data-product="Power Strike Shorts"
               data-price="79.99"
               data-icon="🩳"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -676,6 +720,7 @@
               data-product="Dual Identity Mask"
               data-price="39.99"
               data-icon="🎭"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -695,6 +740,7 @@
               data-product="Inferno Bomber"
               data-price="149.99"
               data-icon="🔥"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -714,6 +760,7 @@
               data-product="Combat Cargo Pants"
               data-price="94.99"
               data-icon="👖"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -733,6 +780,7 @@
               data-product="Death's Door Vest"
               data-price="109.99"
               data-icon="💀"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -752,6 +800,7 @@
               data-product="Nightfall Cloak"
               data-price="179.99"
               data-icon="🌙"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -772,6 +821,7 @@
               data-product="All-Seeing Shades"
               data-price="69.99"
               data-icon="👁️"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -791,6 +841,7 @@
               data-product="Razor Edge Denim"
               data-price="119.99"
               data-icon="🗡️"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -810,6 +861,7 @@
               data-product="Nocturnal Wings Jacket"
               data-price="159.99"
               data-icon="🦇"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -829,6 +881,7 @@
               data-product="Explosive Style Tee"
               data-price="44.99"
               data-icon="💣"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -848,6 +901,7 @@
               data-product="Venom Strike Gloves"
               data-price="59.99"
               data-icon="🐍"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -867,6 +921,7 @@
               data-product="Kingpin Crown Cap"
               data-price="54.99"
               data-icon="👑"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -886,6 +941,7 @@
               data-product="Mystic Manipulation Robe"
               data-price="189.99"
               data-icon="🔮"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -905,6 +961,7 @@
               data-product="Chain Reaction Belt"
               data-price="74.99"
               data-icon="⛓️"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -924,6 +981,7 @@
               data-product="Scorpion Strike Boots"
               data-price="139.99"
               data-icon="🦂"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -943,6 +1001,7 @@
               data-product="Gentleman's Menace Hat"
               data-price="84.99"
               data-icon="🎩"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -962,6 +1021,7 @@
               data-product="Storm Bringer Windbreaker"
               data-price="99.99"
               data-icon="🌩️"
+              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
             </button>
@@ -1157,6 +1217,8 @@
       </div>
     </footer>
 
+    <!-- FIXED: Added auth.js and fixed order -->
+    <script src="auth.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
