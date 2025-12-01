@@ -1,4 +1,6 @@
-// hamburger menu toggle
+// script.js - Fixed Version
+
+// Hamburger menu toggle
 const hamburger = document.querySelector(".hamburger");
 const navLink = document.querySelector(".nav-link");
 
@@ -8,12 +10,9 @@ if (hamburger && navLink) {
     const isActive = hamburger.classList.toggle("active");
     navLink.classList.toggle("active");
     hamburger.setAttribute("aria-expanded", isActive);
-
-    // Prevent body scroll when menu is open
     document.body.style.overflow = isActive ? "hidden" : "";
   });
 
-  // Close menu when clicking outside
   document.addEventListener("click", (e) => {
     if (!navLink.contains(e.target) && !hamburger.contains(e.target)) {
       hamburger.classList.remove("active");
@@ -24,53 +23,55 @@ if (hamburger && navLink) {
   });
 }
 
-//Auto-stop glitch effect after 5 seconds
+// Glitch effect - stays on until toggled off
 const glitchTrigger = document.getElementById("glitchTrigger");
-let glitchTimeout;
+const glitchOverlay = document.getElementById("glitchOverlay");
+const staticNoise = document.getElementById("staticNoise");
 
-if (glitchTrigger) {
+if (glitchTrigger && glitchOverlay && staticNoise) {
   glitchTrigger.addEventListener("click", (e) => {
     e.stopPropagation();
 
-    // Clear existing timeout
-    if (glitchTimeout) clearTimeout(glitchTimeout);
+    // Toggle glitch effects (stays on until clicked again)
+    const isActive = glitchOverlay.classList.toggle("active");
+    staticNoise.classList.toggle("active");
 
-    // Auto-stop after 5 seconds
-    if (glitchActive) {
-      glitchTimeout = setTimeout(() => {
-        glitchTrigger.click(); // Toggle off
-      }, 5000);
+    // Apply glitch to all text elements
+    const glitchText = document.querySelector(".glitch-text");
+    if (glitchText) {
+      glitchText.classList.toggle("active");
     }
+
+    // Apply glitch to navbar elements
+    const navLinks = document.querySelectorAll(".nav-link a, .logo");
+    navLinks.forEach((link) => {
+      link.classList.toggle("glitch-active");
+    });
+
+    // Update button text
+    glitchTrigger.textContent = isActive ? "⚡ STOP HACK" : "⚡ HACK SITE";
   });
 }
 
-// Add loading states to buttons
-function addLoadingState(button) {
-  button.classList.add("loading");
-  button.disabled = true;
-  const originalText = button.textContent;
-  button.textContent = "Loading...";
+// Vault panel functions
+const vaultIcon = document.getElementById("vaultIcon");
+const vaultPanel = document.getElementById("vaultPanel");
+const vaultOverlay = document.getElementById("vaultOverlay");
+const vaultClose = document.getElementById("vaultClose");
 
-  return () => {
-    button.classList.remove("loading");
-    button.disabled = false;
-    button.textContent = originalText;
-  };
-}
-
-//vault animation
 function openVault(e) {
   if (e) e.stopPropagation();
 
-  // Add opening animation class
-  vaultPanel.style.display = "flex";
-
-  // Trigger reflow for animation
-  void vaultPanel.offsetWidth;
+  if (!vaultPanel || !vaultOverlay) return;
 
   vaultPanel.classList.add("open");
   vaultOverlay.classList.add("active");
   document.body.style.overflow = "hidden";
+
+  // Update vault content when opened
+  if (window.updateVaultDisplay) {
+    window.updateVaultDisplay();
+  }
 
   // Focus first interactive element for accessibility
   setTimeout(() => {
@@ -79,72 +80,54 @@ function openVault(e) {
   }, 300);
 }
 
-// Debounced cart save
-let saveTimeout;
-function saveVault() {
-  clearTimeout(saveTimeout);
-  saveTimeout = setTimeout(() => {
-    localStorage.setItem("villainVault", JSON.stringify(vault));
-  }, 500); // Save after 500ms of inactivity
+function closeVault(e) {
+  if (e) e.stopPropagation();
+
+  if (!vaultPanel || !vaultOverlay) return;
+
+  vaultPanel.classList.remove("open");
+  vaultOverlay.classList.remove("active");
+  document.body.style.overflow = "";
 }
 
-//error handling for vault operations
-function addToVault(product, price, icon) {
-  try {
-    const existingItem = vault.find((item) => item.product === product);
-
-    if (existingItem) {
-      existingItem.quantity++;
-    } else {
-      vault.push({
-        product,
-        price: parseFloat(price),
-        icon,
-        quantity: 1,
-      });
-    }
-
-    saveVault();
-    updateVault();
-    showAddedNotification(product);
-  } catch (error) {
-    console.error("Failed to add item to vault:", error);
-    showNotification("Failed to add item. Please try again.", "error");
-  }
+// Attach vault event listeners
+if (vaultIcon) {
+  vaultIcon.addEventListener("click", openVault);
 }
 
-//Enhanced notification system
+if (vaultClose) {
+  vaultClose.addEventListener("click", closeVault);
+}
+
+if (vaultOverlay) {
+  vaultOverlay.addEventListener("click", closeVault);
+}
+
+// Universal Notification System: Uses styles from auth-styles.css
 function showNotification(message, type = "success") {
-  const notification = document.createElement("div");
-  notification.className = `notification notification-${type}`;
-  notification.style.cssText = `
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    background: ${
-      type === "error"
-        ? "linear-gradient(135deg, rgb(180, 0, 0), rgb(120, 0, 0))"
-        : "linear-gradient(135deg, rgb(139, 0, 0), rgb(220, 20, 60))"
-    };
-    color: white;
-    padding: 15px 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
-    z-index: 10000;
-    font-weight: bold;
-    animation: slideIn 0.3s ease;
-    max-width: 300px;
-  `;
+  // Use existing notification if present, or create a new one
+  let notification = document.querySelector(".auth-notification");
+  if (notification) {
+    notification.remove(); // Remove old one immediately to prevent stacking conflicts
+  }
+
+  notification = document.createElement("div");
+  // Use the CSS class defined in auth-styles.css
+  notification.className = `auth-notification auth-notification-${type}`;
   notification.textContent = message;
   document.body.appendChild(notification);
 
+  setTimeout(() => notification.classList.add("show"), 10);
+
   setTimeout(() => {
-    notification.style.animation = "slideOut 0.3s ease";
+    notification.classList.remove("show");
     setTimeout(() => notification.remove(), 300);
   }, 3000);
 }
+// Expose the universal notification function globally
+window.showNotification = showNotification;
 
-//carousel with touch support
+// Carousel with touch support (assuming .carousel-container is in index.html)
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -162,17 +145,15 @@ if (carouselContainer) {
   function handleSwipe() {
     const swipeThreshold = 50;
     if (touchEndX < touchStartX - swipeThreshold) {
-      // Swipe left - next
       document.getElementById("nextBtn")?.click();
     }
     if (touchEndX > touchStartX + swipeThreshold) {
-      // Swipe right - prev
       document.getElementById("prevBtn")?.click();
     }
   }
 }
 
-//Lazy load video
+// Lazy load video
 const heroVideo = document.getElementById("heroVideo");
 if (heroVideo) {
   const observer = new IntersectionObserver(
@@ -180,7 +161,6 @@ if (heroVideo) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           heroVideo.play().catch(() => {
-            // Auto-play failed, show fallback
             console.log("Video autoplay prevented");
           });
         } else {
@@ -194,29 +174,15 @@ if (heroVideo) {
   const heroSection = document.querySelector(".hero-section");
   if (heroSection) observer.observe(heroSection);
 
-  // Add error handling
+  // Fallback handler is now inline in index.html for robustness
   heroVideo.addEventListener("error", () => {
     console.error("Video failed to load");
-    // Hide video container or show fallback image
-    heroVideo.style.display = "none";
-  });
-}
-
-// Form validation
-const authForm = document.getElementById("authForm");
-if (authForm) {
-  authForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const submitBtn = authForm.querySelector('button[type="submit"]');
-    const removeLoading = addLoadingState(submitBtn);
-
-    try {
-      await handleAuthSubmit(e);
-    } catch (error) {
-      showNotification("Authentication failed. Please try again.", "error");
-    } finally {
-      removeLoading();
+    const fallback = document.getElementById("videoFallback");
+    if (fallback) {
+      fallback.style.display = "block";
+      heroVideo.style.display = "none";
+      heroVideo.parentElement.querySelector(".video-overlay").style.display =
+        "block";
     }
   });
 }
@@ -238,33 +204,15 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Prevent cart duplication on page load
-let isCartLoaded = false;
-
-function initializeCart() {
-  if (isCartLoaded) return;
-
-  vault = JSON.parse(localStorage.getItem("villainVault")) || [];
-  updateVault();
-  isCartLoaded = true;
-}
-
-// Call on DOMContentLoaded
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializeCart);
-} else {
-  initializeCart();
-}
-
-// keyboard navigation
+// Keyboard navigation
 document.addEventListener("keydown", (e) => {
-  // Close modals with Escape key
   if (e.key === "Escape") {
     if (vaultPanel?.classList.contains("open")) {
       closeVault();
     }
+    // Check for authModal using its ID, which is created by auth.js
     if (document.getElementById("authModal")?.classList.contains("active")) {
-      closeAuthModal();
+      if (window.closeAuthModal) window.closeAuthModal();
     }
   }
 });
@@ -288,20 +236,25 @@ document.body.appendChild(cartAnnouncer);
 
 function announceCartUpdate(message) {
   cartAnnouncer.textContent = message;
+  // Clear after a short delay so screen readers announce changes
   setTimeout(() => (cartAnnouncer.textContent = ""), 1000);
 }
 
-// Update the updateVault function to include announcements
-const originalUpdateVault = updateVault;
-updateVault = function () {
-  originalUpdateVault();
-  const count = vault.reduce((sum, item) => sum + item.quantity, 0);
+// Update vault function (called from auth.js after any cart change)
+function updateVault() {
+  if (window.updateVaultDisplay) {
+    window.updateVaultDisplay();
+  }
+
+  const count = window.userCart ? window.userCart.length : 0;
   announceCartUpdate(
-    `Cart updated. ${count} item${count !== 1 ? "s" : ""} in cart.`
+    `Vault updated. ${count} item${count !== 1 ? "s" : ""} in vault.`
   );
-};
+}
+window.updateVault = updateVault;
 
 // Performance optimization - throttle scroll events
+// NOTE: This function is defined but not currently used. It is good practice to keep it.
 function throttle(func, wait) {
   let timeout;
   return function executedFunction(...args) {
@@ -314,10 +267,32 @@ function throttle(func, wait) {
   };
 }
 
-// Apply to any scroll listeners
-window.addEventListener(
-  "scroll",
-  throttle(() => {
-    // Your scroll logic here
-  }, 100)
-);
+// Email signup handler
+const emailSignupForm = document.getElementById("emailSignupForm");
+if (emailSignupForm) {
+  emailSignupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const emailInput = emailSignupForm.querySelector(".email-input");
+    if (emailInput && emailInput.value) {
+      window.showNotification(
+        `Welcome to the dark side, ${emailInput.value}! 📧`
+      );
+      emailInput.value = "";
+    }
+  });
+}
+
+// Checkout handler
+const checkoutBtn = document.getElementById("checkoutBtn");
+if (checkoutBtn) {
+  checkoutBtn.addEventListener("click", () => {
+    if (window.userCart && window.userCart.length > 0) {
+      window.showNotification("Checkout feature coming soon! 🛒");
+      // Future: implement checkout logic
+    }
+  });
+}
+
+// Expose other functions globally
+window.openVault = openVault;
+window.closeVault = closeVault;

@@ -1,54 +1,24 @@
-// Authentication State
 let currentUser = null;
 let userCart = [];
+let allUsers = []; // Store all registered users in memory
 
-// Initialize on page load
+// Initialize on page load: Use a slight delay to ensure the DOM elements (like .nav-right) are fully processed by index.html.
 document.addEventListener("DOMContentLoaded", () => {
-  initializeAuth();
-  updateAuthUI();
-  loadUserCart();
-});
-
-// Initialize authentication
-function initializeAuth() {
-  const savedUser = JSON.parse(
-    localStorage.getItem("villainCurrentUser") || "null"
-  );
-  if (savedUser) {
-    currentUser = savedUser;
-  }
-}
-
-// Load user's cart
-function loadUserCart() {
-  if (currentUser) {
-    userCart = JSON.parse(
-      localStorage.getItem(`villainCart_${currentUser.email}`) || "[]"
-    );
+  // Use setTimeout to defer execution slightly, helping stability.
+  setTimeout(() => {
+    updateAuthUI();
     updateVaultDisplay();
-  }
-}
-
-// Save user's cart
-function saveUserCart() {
-  if (currentUser) {
-    localStorage.setItem(
-      `villainCart_${currentUser.email}`,
-      JSON.stringify(userCart)
-    );
-  }
-}
+  }, 50);
+});
 
 // Update UI based on auth state
 function updateAuthUI() {
   const navRight = document.querySelector(".nav-right");
+  if (!navRight) return;
 
-  // Remove existing auth button if present
-  const existingAuthBtn = document.getElementById("authButton");
-  if (existingAuthBtn) existingAuthBtn.remove();
-
-  const existingUserInfo = document.getElementById("userInfo");
-  if (existingUserInfo) existingUserInfo.remove();
+  // Remove existing auth elements
+  document.getElementById("authButton")?.remove();
+  document.getElementById("userInfo")?.remove();
 
   if (currentUser) {
     // Show user info and logout
@@ -62,6 +32,7 @@ function updateAuthUI() {
         <button class="logout-btn" onclick="handleLogout()">🚪 Logout</button>
       </div>
     `;
+    // Prepend user info, ensuring it's before the vault icon if present
     navRight.insertBefore(userInfo, navRight.firstChild);
   } else {
     // Show login button
@@ -76,7 +47,6 @@ function updateAuthUI() {
 
 // Show authentication modal
 function showAuthModal() {
-  // Remove existing modal if present
   const existingModal = document.getElementById("authModal");
   if (existingModal) existingModal.remove();
 
@@ -112,7 +82,7 @@ function showAuthModal() {
         </div>
 
         <div class="form-group">
-          <label>🔒 Password</label>
+          <label>🔑 Password</label>
           <div class="password-input-wrapper">
             <input type="password" id="authPassword" required placeholder="••••••••">
             <button type="button" class="toggle-password" onclick="togglePasswordVisibility('authPassword')">
@@ -123,7 +93,7 @@ function showAuthModal() {
         </div>
 
         <div class="form-group" id="confirmPasswordGroup" style="display: none;">
-          <label>🔒 Confirm Password</label>
+          <label>🔑 Confirm Password</label>
           <div class="password-input-wrapper">
             <input type="password" id="authConfirmPassword" placeholder="••••••••">
             <button type="button" class="toggle-password" onclick="togglePasswordVisibility('authConfirmPassword')">
@@ -148,6 +118,7 @@ function showAuthModal() {
   `;
 
   document.body.appendChild(modal);
+  // Short delay for CSS transition hook
   setTimeout(() => modal.classList.add("active"), 10);
 }
 
@@ -156,6 +127,7 @@ function closeAuthModal() {
   const modal = document.getElementById("authModal");
   if (modal) {
     modal.classList.remove("active");
+    // Wait for the CSS transition to finish before removing from DOM
     setTimeout(() => modal.remove(), 300);
   }
 }
@@ -164,7 +136,6 @@ function closeAuthModal() {
 function switchAuthMode(mode) {
   const isLogin = mode === "login";
 
-  // Update title
   document.getElementById("authTitle").textContent = isLogin
     ? "🔐 Villain Login"
     : "🦹‍♂️ Join The Dark Side";
@@ -172,7 +143,6 @@ function switchAuthMode(mode) {
     ? "Access your evil arsenal"
     : "Create your villain account";
 
-  // Update tabs
   const tabs = document.querySelectorAll(".auth-tab");
   tabs.forEach((tab, index) => {
     if ((isLogin && index === 0) || (!isLogin && index === 1)) {
@@ -182,7 +152,6 @@ function switchAuthMode(mode) {
     }
   });
 
-  // Show/hide fields
   document.getElementById("usernameGroup").style.display = isLogin
     ? "none"
     : "block";
@@ -190,20 +159,16 @@ function switchAuthMode(mode) {
     ? "none"
     : "block";
 
-  // Update submit button
   document.getElementById("authSubmitBtn").textContent = isLogin
     ? "Enter The Vault"
     : "Join The Dark Side";
 
-  // Update toggle text
   document.getElementById("authToggleText").innerHTML = isLogin
     ? 'Don\'t have an account? <a href="#" onclick="switchAuthMode(\'register\'); return false;">Register here</a>'
     : 'Already a villain? <a href="#" onclick="switchAuthMode(\'login\'); return false;">Login here</a>';
 
-  // Clear errors
   clearAuthErrors();
 
-  // Set required attribute on username
   const usernameInput = document.getElementById("authUsername");
   if (!isLogin) {
     usernameInput.setAttribute("required", "required");
@@ -224,7 +189,6 @@ function handleAuthSubmit(event) {
   const isLogin =
     document.querySelector(".auth-tab.active").textContent === "Login";
 
-  // Validate
   let hasError = false;
 
   if (!validateEmail(email)) {
@@ -258,8 +222,9 @@ function handleAuthSubmit(event) {
 
 // Perform login
 function performLogin(email, password) {
-  const users = JSON.parse(localStorage.getItem("villainUsers") || "[]");
-  const user = users.find((u) => u.email === email && u.password === password);
+  const user = allUsers.find(
+    (u) => u.email === email && u.password === password
+  );
 
   if (!user) {
     showError("emailError", "Invalid email or password");
@@ -267,19 +232,23 @@ function performLogin(email, password) {
   }
 
   currentUser = { email: user.email, username: user.username };
-  localStorage.setItem("villainCurrentUser", JSON.stringify(currentUser));
+
+  // Load this user's cart (deep copy for cart items)
+  userCart.length = 0; // Clear the reference array
+  userCart.push(...(user.cart || []).map((item) => ({ ...item })));
 
   closeAuthModal();
   updateAuthUI();
-  loadUserCart();
-  showNotification(`Welcome back, ${user.username}! Your evil plans await. 🗝️`);
+  updateVaultDisplay();
+  // Use the global window.showNotification for consistent UI/UX
+  window.showNotification(
+    `Welcome back, ${user.username}! Your evil plans await. 🗝️`
+  );
 }
 
 // Perform registration
 function performRegister(email, username, password) {
-  const users = JSON.parse(localStorage.getItem("villainUsers") || "[]");
-
-  if (users.find((u) => u.email === email)) {
+  if (allUsers.find((u) => u.email === email)) {
     showError("emailError", "This email is already registered");
     return;
   }
@@ -287,39 +256,47 @@ function performRegister(email, username, password) {
   const newUser = {
     email,
     username,
-    password, // In production, this should be hashed
+    password,
+    cart: [],
     createdAt: new Date().toISOString(),
   };
 
-  users.push(newUser);
-  localStorage.setItem("villainUsers", JSON.stringify(users));
+  allUsers.push(newUser);
 
   // Auto login
   currentUser = { email: newUser.email, username: newUser.username };
-  localStorage.setItem("villainCurrentUser", JSON.stringify(currentUser));
+  userCart.length = 0; // Initialize empty cart
 
   closeAuthModal();
   updateAuthUI();
-  loadUserCart();
-  showNotification(`Welcome to the dark side, ${username}! 🦹‍♂️`);
+  updateVaultDisplay();
+  // Use the global window.showNotification for consistent UI/UX
+  window.showNotification(`Welcome to the dark side, ${username}! 🦹‍♂️`);
 }
 
 // Handle logout
 function handleLogout() {
   if (currentUser) {
-    saveUserCart();
+    // Save current cart state back to user's record
+    const user = allUsers.find((u) => u.email === currentUser.email);
+    if (user) {
+      // Perform a deep copy of the cart to save it correctly
+      user.cart = [...userCart];
+    }
   }
 
   currentUser = null;
-  userCart = [];
-  localStorage.removeItem("villainCurrentUser");
+  userCart.length = 0; // Clear the userCart array after saving/logging out
 
   updateAuthUI();
   updateVaultDisplay();
-  showNotification("You have been logged out. Your progress is saved. 💀");
+  // Use the global window.showNotification for consistent UI/UX
+  window.showNotification(
+    "You have been logged out. Your progress is saved. 👋"
+  );
 }
 
-// Integrate with existing vault system
+// Update vault display
 function updateVaultDisplay() {
   const vaultContent = document.getElementById("vaultContent");
   const vaultCount = document.getElementById("vaultCount");
@@ -337,7 +314,7 @@ function updateVaultDisplay() {
         </p>
       </div>
     `;
-    vaultFooter.style.display = "none";
+    if (vaultFooter) vaultFooter.style.display = "none";
   } else {
     vaultContent.innerHTML = userCart
       .map(
@@ -356,37 +333,50 @@ function updateVaultDisplay() {
       )
       .join("");
 
-    vaultFooter.style.display = "block";
+    if (vaultFooter) vaultFooter.style.display = "flex"; // Changed to flex for proper alignment
     const total = userCart.reduce((sum, item) => sum + (item.price || 0), 0);
-    vaultTotal.textContent = `$${total.toFixed(2)}`;
+    if (vaultTotal) vaultTotal.textContent = `$${total.toFixed(2)}`;
   }
 
-  vaultCount.textContent = userCart.length;
+  if (vaultCount) vaultCount.textContent = userCart.length;
+
+  // Also call window.updateVault if it exists (defined in script.js for ARIA updates)
+  if (window.updateVault) {
+    window.updateVault();
+  }
 }
 
 // Remove item from cart
 function removeFromUserCart(index) {
-  userCart.splice(index, 1);
-  saveUserCart();
-  updateVaultDisplay();
-  showNotification("Item removed from vault 🗑️");
+  if (index >= 0 && index < userCart.length) {
+    const productName = userCart[index].product;
+    userCart.splice(index, 1);
+    updateVaultDisplay();
+    // Use the global window.showNotification for consistent UI/UX
+    window.showNotification(`${productName} removed from vault 🗑️`);
+  }
 }
 
-// Override existing addToVault function
+// Add to vault with auth check
 function addToVaultWithAuth(product, price, icon) {
   if (!currentUser) {
     showAuthModal();
-    showNotification("Please login to add items to your vault 🔐");
+    // Use the global window.showNotification for consistent UI/UX
+    window.showNotification(
+      "Please login to add items to your vault 🔐",
+      "error"
+    );
     return;
   }
 
   userCart.push({ product, price: parseFloat(price), icon });
-  saveUserCart();
   updateVaultDisplay();
-  showNotification(`${product} secured in vault! 🗝️`);
+
+  // Use the global window.showNotification for consistent UI/UX
+  window.showNotification(`${product} secured in vault! 🗝️`);
 }
 
-// Utility functions
+// Utility functions (moved to be globally accessible if they weren't already)
 function validateEmail(email) {
   return /\S+@\S+\.\S+/.test(email);
 }
@@ -409,7 +399,9 @@ function clearAuthErrors() {
 
 function togglePasswordVisibility(inputId) {
   const input = document.getElementById(inputId);
-  const button = input.nextElementSibling;
+  const button =
+    input.nextElementSibling.querySelector("button") ||
+    input.nextElementSibling;
 
   if (input.type === "password") {
     input.type = "text";
@@ -420,21 +412,11 @@ function togglePasswordVisibility(inputId) {
   }
 }
 
-function showNotification(message) {
-  const notification = document.createElement("div");
-  notification.className = "auth-notification";
-  notification.textContent = message;
-  document.body.appendChild(notification);
+// This notification function will be REMOVED as it conflicts with script.js's notification.
+// We are ensuring the notification in script.js is used universally.
+// The next section will update script.js to expose its superior notification system.
 
-  setTimeout(() => notification.classList.add("show"), 10);
-
-  setTimeout(() => {
-    notification.classList.remove("show");
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
-}
-
-// Make functions globally accessible
+// Make functions globally accessible (CRITICAL for index.html onclicks)
 window.showAuthModal = showAuthModal;
 window.closeAuthModal = closeAuthModal;
 window.switchAuthMode = switchAuthMode;
@@ -443,3 +425,7 @@ window.handleLogout = handleLogout;
 window.togglePasswordVisibility = togglePasswordVisibility;
 window.removeFromUserCart = removeFromUserCart;
 window.addToVaultWithAuth = addToVaultWithAuth;
+window.addToVault = addToVaultWithAuth;
+window.updateVaultDisplay = updateVaultDisplay;
+window.userCart = userCart; // Expose for script.js
+// NOTE: We are intentionally *not* defining showNotification her

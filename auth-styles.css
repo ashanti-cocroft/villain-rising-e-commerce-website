@@ -5,23 +5,29 @@
 /* Auth Button */
 .auth-button {
   padding: 12px 30px;
-  background: linear-gradient(135deg, rgb(139, 0, 0), rgb(220, 20, 60));
-  color: white;
-  border: none;
+  /* Darker background for contrast */
+  background: rgba(10, 5, 5, 0.9);
+  color: #ff3333; /* Use a brighter red for text */
+  border: 2px solid #ff0000; /* Sharp red border */
   border-radius: 8px;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
-  transition: all 0.3s ease;
+  /* Initial subtle glow */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .auth-button:hover {
+  color: white; /* Text turns white on hover */
   background: linear-gradient(135deg, rgb(180, 0, 0), rgb(255, 30, 70));
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
+  transform: translateY(-3px) scale(1.05); /* Lifts and slightly enlarges */
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.8), 0 0 50px rgba(255, 0, 0, 0.6); /* Intense glow */
+  border-color: white; /* Border highlights white/red */
 }
 
 /* User Info Display */
@@ -102,21 +108,22 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9); /* Darker overlay */
   backdrop-filter: blur(5px);
 }
 
 .auth-modal-content {
   position: relative;
-  background: linear-gradient(135deg, rgb(15, 14, 14), rgb(30, 10, 10));
-  border: 2px solid rgba(255, 0, 0, 0.5);
+  /* Darker gradient background for a villainous look */
+  background: linear-gradient(135deg, rgb(10, 5, 5), rgb(20, 10, 10));
+  border: 2px solid rgba(255, 0, 0, 0.7); /* Stronger border */
   border-radius: 15px;
   padding: 40px;
   max-width: 450px;
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 20px 80px rgba(255, 0, 0, 0.2), 0 0 30px rgba(255, 0, 0, 0.4); /* Stronger shadow/glow */
   transform: scale(0.9);
   transition: transform 0.3s ease;
 }
@@ -157,10 +164,10 @@
 }
 
 .auth-header h2 {
-  font-size: 2rem;
+  font-size: 2.2rem; /* Slightly larger */
   font-weight: bold;
-  color: #ff0000;
-  text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  color: #ff3333; /* Brighter red */
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.8); /* Stronger glow */
   margin-bottom: 10px;
 }
 
@@ -179,8 +186,8 @@
 .auth-tab {
   flex: 1;
   padding: 12px;
-  background: rgba(255, 0, 0, 0.1);
-  border: 2px solid rgba(255, 0, 0, 0.3);
+  background: rgba(255, 0, 0, 0.05); /* Lighter background */
+  border: 2px solid rgba(255, 0, 0, 0.5); /* Stronger border */
   color: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   cursor: pointer;
@@ -197,10 +204,12 @@
 }
 
 .auth-tab.active {
-  background: linear-gradient(135deg, rgb(139, 0, 0), rgb(220, 20, 60));
-  border-color: rgba(255, 0, 0, 0.6);
-  color: white;
-  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+  /* Use a vibrant, solid red for the active state */
+  background: #ff0000;
+  border-color: #ff6666;
+  color: black; /* Contrast with red */
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.8);
 }
 
 /* Form Styles */
@@ -234,9 +243,9 @@
 }
 
 .form-group input:focus {
-  border-color: rgba(255, 0, 0, 0.6);
+  border-color: #ff3333;
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Input glow effect */
 }
 
 .form-group input::placeholder {
@@ -282,25 +291,39 @@
 /* Submit Button */
 .auth-submit-btn {
   width: 100%;
-  padding: 15px;
-  background: linear-gradient(135deg, rgb(139, 0, 0), rgb(220, 20, 60));
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 18px; /* Slightly larger button */
+  /* Intense, dark-to-bright gradient */
+  background: linear-gradient(135deg, #cc0000, #ff0000);
+  color: #0a0505; /* Black text for high contrast */
+  border: 2px solid white; /* White internal border */
+  border-radius: 10px;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   cursor: pointer;
-  font-size: 1rem;
-  margin-top: 10px;
-  box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+  font-size: 1.1rem;
+  margin-top: 15px;
+  /* Strong pulsing shadow effect */
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
   transition: all 0.3s ease;
+  animation: subtlePulse 2s infinite alternate;
+}
+
+@keyframes subtlePulse {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6), 0 0 0 0 rgba(255, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 1), 0 0 5px 5px rgba(255, 0, 0, 0.1);
+  }
 }
 
 .auth-submit-btn:hover {
-  background: linear-gradient(135deg, rgb(180, 0, 0), rgb(255, 30, 70));
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+  background: linear-gradient(135deg, #ff0000, #ff6666);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 40px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.8);
+  animation: none; /* Stop pulsing on hover for smooth effect */
+  color: white;
 }
 
 /* Auth Toggle */
@@ -356,7 +379,7 @@
   }
 
   .auth-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Adjusted for mobile */
   }
 
   .user-display {

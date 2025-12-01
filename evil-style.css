@@ -667,6 +667,10 @@ body {
     padding: 10px 20px;
     font-size: 0.8rem;
   }
+
+  .nav-link {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
