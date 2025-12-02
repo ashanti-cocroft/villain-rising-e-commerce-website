@@ -1,8 +1,26 @@
+// auth.js - WITH LOCALSTORAGE PERSISTENCE
+
 let currentUser = null;
 let userCart = [];
 let allUsers = [];
 
+const USER_DATA_KEY = "villainRising_allUsers";
+
+// --- Utility Functions for LocalStorage ---
+function loadUsers() {
+  const savedUsers = localStorage.getItem(USER_DATA_KEY);
+  if (savedUsers) {
+    allUsers = JSON.parse(savedUsers);
+  }
+}
+
+function saveUsers() {
+  localStorage.setItem(USER_DATA_KEY, JSON.stringify(allUsers));
+}
+
+// --- Initialize: Load users from storage on startup ---
 document.addEventListener("DOMContentLoaded", () => {
+  loadUsers(); // Load existing user data
   setTimeout(() => {
     updateAuthUI();
     updateVaultDisplay();
@@ -33,13 +51,16 @@ function updateAuthUI() {
     const authButton = document.createElement("button");
     authButton.id = "authButton";
     authButton.className = "auth-button";
-    authButton.textContent = "🔐 Login / Register";
+    // Text will be updated by heroic-theme.js after initialization
+    authButton.textContent = document.body.classList.contains("hero-theme")
+      ? "🛡️ Access Sanctum"
+      : "🔐 Login / Register";
     authButton.onclick = showAuthModal;
     navRight.insertBefore(authButton, navRight.firstChild);
   }
 }
 
-// Show authentication modal (Now dynamically sets content based on theme)
+// Show authentication modal
 function showAuthModal() {
   const existingModal = document.getElementById("authModal");
   if (existingModal) existingModal.remove();
@@ -200,7 +221,7 @@ function switchAuthMode(mode) {
   }
 }
 
-// Handle form submission
+// Handle form submission (unchanged)
 function handleAuthSubmit(event) {
   event.preventDefault();
   clearAuthErrors();
@@ -243,7 +264,7 @@ function handleAuthSubmit(event) {
   }
 }
 
-// Perform login
+// Perform login (MODIFIED: loads cart)
 function performLogin(email, password) {
   const user = allUsers.find(
     (u) => u.email === email && u.password === password
@@ -263,13 +284,12 @@ function performLogin(email, password) {
   closeAuthModal();
   updateAuthUI();
   updateVaultDisplay();
-  // Use the global window.showNotification for consistent UI/UX
   window.showNotification(
     `Welcome back, ${user.username}! Your evil plans await. 🗝️`
   );
 }
 
-// Perform registration
+// Perform registration (MODIFIED: saves users)
 function performRegister(email, username, password) {
   if (allUsers.find((u) => u.email === email)) {
     showError("emailError", "This email is already registered");
@@ -285,6 +305,7 @@ function performRegister(email, username, password) {
   };
 
   allUsers.push(newUser);
+  saveUsers(); // Save the updated user list to local storage
 
   // Auto login
   currentUser = { email: newUser.email, username: newUser.username };
@@ -293,11 +314,10 @@ function performRegister(email, username, password) {
   closeAuthModal();
   updateAuthUI();
   updateVaultDisplay();
-  // Use the global window.showNotification for consistent UI/UX
   window.showNotification(`Welcome to the dark side, ${username}! 🦹‍♂️`);
 }
 
-// Handle logout
+// Handle logout (MODIFIED: saves cart and users)
 function handleLogout() {
   if (currentUser) {
     // Save current cart state back to user's record
@@ -305,6 +325,7 @@ function handleLogout() {
     if (user) {
       // Perform a deep copy of the cart to save it correctly
       user.cart = [...userCart];
+      saveUsers(); // Save the updated cart to local storage
     }
   }
 
@@ -313,13 +334,56 @@ function handleLogout() {
 
   updateAuthUI();
   updateVaultDisplay();
-  // Use the global window.showNotification for consistent UI/UX
   window.showNotification(
     "You have been logged out. Your progress is saved. 👋"
   );
 }
 
-// Update vault display
+// Add to vault with auth check (MODIFIED: saves cart)
+function addToVaultWithAuth(product, price, icon) {
+  if (!currentUser) {
+    showAuthModal();
+    window.showNotification(
+      "Please login to add items to your vault 🔐",
+      "error"
+    );
+    return;
+  }
+
+  userCart.push({ product, price: parseFloat(price), icon });
+
+  // If logged in, find the user and save the cart immediately
+  const user = allUsers.find((u) => u.email === currentUser.email);
+  if (user) {
+    user.cart = [...userCart];
+    saveUsers();
+  }
+
+  updateVaultDisplay();
+  window.showNotification(`${product} secured in vault! 🗝️`);
+}
+
+// Remove item from cart (MODIFIED: saves cart)
+function removeFromUserCart(index) {
+  if (index >= 0 && index < userCart.length) {
+    const productName = userCart[index].product;
+    userCart.splice(index, 1);
+
+    // If logged in, update the cart in the user list and save it
+    if (currentUser) {
+      const user = allUsers.find((u) => u.email === currentUser.email);
+      if (user) {
+        user.cart = [...userCart];
+        saveUsers();
+      }
+    }
+
+    updateVaultDisplay();
+    window.showNotification(`${productName} removed from vault 🗑️`);
+  }
+}
+
+// Update vault display (MODIFIED: dynamic empty text)
 function updateVaultDisplay() {
   const vaultContent = document.getElementById("vaultContent");
   const vaultCount = document.getElementById("vaultCount");
@@ -328,12 +392,18 @@ function updateVaultDisplay() {
 
   if (!vaultContent) return;
 
+  const isHero = document.body.classList.contains("hero-theme");
+
   if (userCart.length === 0) {
     vaultContent.innerHTML = `
       <div class="vault-empty">
         <div class="vault-empty-icon">🔒</div>
         <p class="vault-empty-text">
-          Your vault is empty.<br>Add items to begin your villain collection.
+          ${
+            isHero
+              ? "Your sanctuary is empty.<br>Add items to begin your heroic journey."
+              : "Your vault is empty.<br>Add items to begin your villain collection."
+          }
         </p>
       </div>
     `;
@@ -356,50 +426,19 @@ function updateVaultDisplay() {
       )
       .join("");
 
-    if (vaultFooter) vaultFooter.style.display = "flex"; // Changed to flex for proper alignment
+    if (vaultFooter) vaultFooter.style.display = "flex";
     const total = userCart.reduce((sum, item) => sum + (item.price || 0), 0);
     if (vaultTotal) vaultTotal.textContent = `$${total.toFixed(2)}`;
   }
 
   if (vaultCount) vaultCount.textContent = userCart.length;
 
-  // Also call window.updateVault if it exists (defined in script.js for ARIA updates)
   if (window.updateVault) {
     window.updateVault();
   }
 }
 
-// Remove item from cart
-function removeFromUserCart(index) {
-  if (index >= 0 && index < userCart.length) {
-    const productName = userCart[index].product;
-    userCart.splice(index, 1);
-    updateVaultDisplay();
-    // Use the global window.showNotification for consistent UI/UX
-    window.showNotification(`${productName} removed from vault 🗑️`);
-  }
-}
-
-// Add to vault with auth check
-function addToVaultWithAuth(product, price, icon) {
-  if (!currentUser) {
-    showAuthModal();
-    // Use the global window.showNotification for consistent UI/UX
-    window.showNotification(
-      "Please login to add items to your vault 🔐",
-      "error"
-    );
-    return;
-  }
-
-  userCart.push({ product, price: parseFloat(price), icon });
-  updateVaultDisplay();
-
-  // Use the global window.showNotification for consistent UI/UX
-  window.showNotification(`${product} secured in vault! 🗝️`);
-}
-
-// Utility functions (moved to be globally accessible if they weren't already)
+// Utility functions (unchanged)
 function validateEmail(email) {
   return /\S+@\S+\.\S+/.test(email);
 }
@@ -435,11 +474,7 @@ function togglePasswordVisibility(inputId) {
   }
 }
 
-// This notification function will be REMOVED as it conflicts with script.js's notification.
-// We are ensuring the notification in script.js is used universally.
-// The next section will update script.js to expose its superior notification system.
-
-// Make functions globally accessible (CRITICAL for index.html onclicks)
+// Make functions globally accessible (CRITICAL for html onclicks)
 window.showAuthModal = showAuthModal;
 window.closeAuthModal = closeAuthModal;
 window.switchAuthMode = switchAuthMode;
@@ -450,5 +485,4 @@ window.removeFromUserCart = removeFromUserCart;
 window.addToVaultWithAuth = addToVaultWithAuth;
 window.addToVault = addToVaultWithAuth;
 window.updateVaultDisplay = updateVaultDisplay;
-window.userCart = userCart; // Expose for script.js
-// NOTE: We are intentionally *not* defining showNotification her
+window.userCart = userCart;

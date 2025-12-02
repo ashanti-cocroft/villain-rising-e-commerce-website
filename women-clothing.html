@@ -3,302 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- FIXED: Load universal styles and auth styles -->
+    <meta
+      name="description"
+      content="Women's Collection - Performance athletic wear for dominance and ascension."
+    />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="auth-styles.css" />
-    <title>Women's Clothing - Villain Rising</title>
+    <link rel="stylesheet" href="heroic/heroic-theme.css" />
+    <title>Women's Collection</title>
   </head>
   <body>
+    <div class="divine-overlay" id="divineOverlay"></div>
+    <div class="holy-glow" id="holyGlow"></div>
+    <div class="noise-overlay"></div>
+    <div class="scanlines"></div>
     <div class="glitch-overlay" id="glitchOverlay"></div>
     <div class="static-noise" id="staticNoise"></div>
 
-    <button class="glitch-trigger" id="glitchTrigger">⚡ HACK SITE</button>
+    <button
+      class="theme-toggle"
+      id="themeToggle"
+      aria-label="Toggle theme between Villain Rising and Heroic"
+    >
+      😇 Heroic Mode
+    </button>
+    <button
+      class="glitch-trigger"
+      id="effectTrigger"
+      aria-label="Toggle visual effect"
+    >
+      ⚡ HACK SITE
+    </button>
 
     <nav class="navbar">
-      <div class="logo">Villain Rising</div>
+      <div class="logo" data-text="Villain Rising">Villain Rising</div>
       <ul class="nav-link">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" data-text="Home">Home</a></li>
         <li>
-          <a href="men-clothing.html">Men's Clothing</a>
-
-          <div class="mega-menu">
-            <div class="mega-menu-grid">
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🔥 Killer Sale Friday</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-sale">All Men's Sale</a></li>
-                  <li><a href="#tshirts-sale">T-Shirts & Tops from $10</a></li>
-                  <li><a href="#shorts-sale">Shorts From $15</a></li>
-                  <li><a href="#hoodies-sale">Hoodies from $24</a></li>
-                  <li><a href="#sweatpants-sale">Sweatpants from $25</a></li>
-                  <li><a href="#50-off">50% Off & Over</a></li>
-                  <li><a href="#30-under">$30 & Under</a></li>
-                  <li><a href="#accessories-sale">All Sale Accessories</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">👕 T-Shirts & Tops</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-tops">T-Shirts & Tops</a></li>
-                  <li><a href="#compression">Compression Fit T-Shirts</a></li>
-                  <li><a href="#muscle-fit">Muscle Fit Shirts</a></li>
-                  <li><a href="#tanks">Tank Tops</a></li>
-                  <li><a href="#oversized">Oversized T-Shirts</a></li>
-                  <li><a href="#long-sleeve">Long Sleeve Tops</a></li>
-                  <li><a href="#stringers">Stringers</a></li>
-                  <li><a href="#black-tees">Black T-Shirts</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🛍️ Products</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-products">All Products</a></li>
-                  <li><a href="#tshirts">T-Shirts & Tops</a></li>
-                  <li><a href="#shorts">Shorts</a></li>
-                  <li><a href="#hoodies">Hoodies & Sweatshirts</a></li>
-                  <li><a href="#joggers">Joggers & Sweatpants</a></li>
-                  <li><a href="#tracksuits">Tracksuits</a></li>
-                  <li><a href="#long-sleeve-tops">Long Sleeve Tops</a></li>
-                  <li><a href="#jackets">Jackets</a></li>
-                  <li><a href="#outerwear">Outerwear</a></li>
-                  <li><a href="#underwear">Men's Underwear & Basics</a></li>
-                  <li><a href="#base-layers">Base Layers</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🔍 Explore</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#shorts-guide">Shorts Guide</a></li>
-                  <li><a href="#your-edit">Your Edit</a></li>
-                  <li><a href="#loyalty">Villain Loyalty</a></li>
-                  <li>
-                    <a href="#roosevelt">Villain Rising at Roosevelt Field</a>
-                  </li>
-                </ul>
-
-                <div class="mega-menu-featured">
-                  <a href="#new-arrivals">✨ New Arrivals</a>
-                </div>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🎒 Accessories</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="accessories.html">All Accessories</a></li>
-                  <li><a href="#bags">Bags & Backpacks</a></li>
-                  <li><a href="#hats">Hats & Caps</a></li>
-                  <li><a href="#socks">Socks</a></li>
-                  <li><a href="#gloves">Gloves</a></li>
-                  <li><a href="#bottles">Water Bottles</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <a href="men-clothing.html" data-text="Men's Clothing"
+            >Men's Clothing</a
+          >
         </li>
         <li>
-          <a href="women-clothing.html">Women's Clothing</a>
-          <div class="mega-menu">
-            <div class="mega-menu-grid">
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">⚡ Black Friday</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-sale">All Women's Sale</a></li>
-                  <li><a href="#best-sale">Best of Black Friday</a></li>
-                  <li><a href="#leggings-sale">Leggings from $22</a></li>
-                  <li><a href="#bras-sale">Sports Bras from $16</a></li>
-                  <li><a href="#tops-sale">Tops from $16</a></li>
-                  <li><a href="#shorts-sale">Shorts from $16</a></li>
-                  <li><a href="#hoodies-sale">Hoodies from $24</a></li>
-                  <li><a href="#sweats-sale">Sweatpants from $24</a></li>
-                  <li><a href="#50-off">50% Off & Over</a></li>
-                  <li><a href="#under-30">$30 and under</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🩱 Leggings</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-leggings">All Leggings</a></li>
-                  <li><a href="#high-waisted">High-Waisted Leggings</a></li>
-                  <li><a href="#scrunch">Scrunch Butt Leggings</a></li>
-                  <li><a href="#black-leggings">Black Leggings</a></li>
-                  <li><a href="#flare">Flare Leggings</a></li>
-                  <li><a href="#seamless">Seamless Leggings</a></li>
-                  <li><a href="#pockets">Leggings With Pockets</a></li>
-                  <li><a href="#tall">Tall Leggings</a></li>
-                </ul>
-                <div class="mega-menu-featured">
-                  <a href="#featured-leggings"
-                    >✨ Featured: Shadow Strike Collection</a
-                  >
-                </div>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">👕 Products</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-products">All Products</a></li>
-                  <li><a href="#leggings">Leggings</a></li>
-                  <li><a href="#tshirts">T-Shirts & Tops</a></li>
-                  <li><a href="#sports-bras">Sports Bras</a></li>
-                  <li><a href="#long-sleeves">Long Sleeves</a></li>
-                  <li><a href="#shorts">Shorts</a></li>
-                  <li><a href="#sets">Matching Sets</a></li>
-                  <li><a href="#joggers">Joggers & Sweatpants</a></li>
-                  <li><a href="#hoodies">Hoodies & Sweatshirts</a></li>
-                  <li><a href="#jackets">Jackets</a></li>
-                  <li><a href="#outerwear">Outerwear</a></li>
-                  <li><a href="#tracksuits">Tracksuits</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🔍 Explore</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#leggings-guide">Leggings Guide</a></li>
-                  <li><a href="#bra-guide">Sports Bra Guide</a></li>
-                  <li><a href="#your-edit">Your Edit</a></li>
-                  <li><a href="#loyalty">Villain Loyalty</a></li>
-                  <li><a href="#stores">Physical Stores</a></li>
-                  <li><a href="#black-friday">Black Friday Deals</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">👜 Accessories</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-accessories">All Accessories</a></li>
-                  <li><a href="#bags">Gym Bags</a></li>
-                  <li><a href="#socks">All Socks</a></li>
-                  <li><a href="#bottles">Water Bottles</a></li>
-                  <li><a href="#headbands">Headbands</a></li>
-                  <li><a href="#gloves">Training Gloves</a></li>
-                  <li><a href="#caps">Caps & Hats</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🎁 Gifting</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#gifts-her">Gifts for Her</a></li>
-                  <li><a href="#under-30">Gifts Under $30</a></li>
-                  <li><a href="#under-60">Gifts Under $60</a></li>
-                  <li><a href="#stocking">Stocking Fillers</a></li>
-                  <li><a href="#gym-gifts">Gifts For Gym</a></li>
-                </ul>
-                <div class="mega-menu-featured">
-                  <a href="#gift-cards">💳 Gift Cards Available</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <a href="women-clothing.html" data-text="Women's Clothing"
+            >Women's Clothing</a
+          >
         </li>
         <li>
-          <a href="#accessories">Accessories</a>
-          <div class="mega-menu">
-            <div class="mega-menu-grid">
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">👜 Bags</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-bags">All Bags</a></li>
-                  <li><a href="#backpacks">Backpacks</a></li>
-                  <li><a href="#duffle">Duffle Bags</a></li>
-                  <li><a href="#tote">Tote Bags</a></li>
-                  <li><a href="#mini-bags">Mini & Small Bags</a></li>
-                  <li><a href="#bag-accessories">Bag Accessories</a></li>
-                </ul>
-                <div class="mega-menu-featured">
-                  <a href="#featured-bags">✨ New: Shadow Collection</a>
-                </div>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">⚙️ Equipment</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-equipment">All Equipment</a></li>
-                  <li><a href="#bottles">All Bottles</a></li>
-                  <li><a href="#water-bottles">Water Bottles</a></li>
-                  <li><a href="#shaker-bottles">Shaker Bottles</a></li>
-                  <li><a href="#gym-accessories">Gym Accessories</a></li>
-                  <li><a href="#resistance-bands">Resistance Bands</a></li>
-                  <li><a href="#lifting-straps">Lifting Straps</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🧦 Socks</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-socks">All Socks</a></li>
-                  <li><a href="#sale-socks">Sale Socks</a></li>
-                  <li><a href="#ankle-socks">Ankle Socks</a></li>
-                  <li><a href="#crew-socks">Crew Socks</a></li>
-                  <li><a href="#compression-socks">Compression Socks</a></li>
-                  <li><a href="#no-show-socks">No-Show Socks</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🩲 Underwear</h3>
-                <ul class="mega-menu-links">
-                  <li>
-                    <a href="#womens-underwear">Women's Underwear & Basics</a>
-                  </li>
-                  <li>
-                    <a href="#mens-underwear">Men's Underwear & Basics</a>
-                  </li>
-                  <li><a href="#sports-bras">Sports Bras</a></li>
-                  <li><a href="#boxers">Boxers & Briefs</a></li>
-                  <li><a href="#compression-wear">Compression Wear</a></li>
-                  <li><a href="#base-layers">Base Layers</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🧢 Headwear</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#all-headwear">All Headwear</a></li>
-                  <li><a href="#caps">Caps</a></li>
-                  <li><a href="#hijabs">Hijabs</a></li>
-                  <li><a href="#headbands">Headbands & Hair Accessories</a></li>
-                  <li><a href="#beanies">Beanies</a></li>
-                  <li><a href="#visors">Visors</a></li>
-                  <li><a href="#bandanas">Bandanas</a></li>
-                </ul>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">👟 Footwear</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#slides">Slides</a></li>
-                  <li><a href="#training-shoes">Training Shoes</a></li>
-                  <li><a href="#lifting-shoes">Lifting Shoes</a></li>
-                  <li><a href="#running-shoes">Running Shoes</a></li>
-                  <li><a href="#sandals">Sandals</a></li>
-                </ul>
-                <div class="mega-menu-featured">
-                  <a href="#new-footwear">🔥 New Arrivals</a>
-                </div>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3 class="mega-menu-title">⚡ More</h3>
-                <ul class="mega-menu-links">
-                  <li><a href="#gloves">Training Gloves</a></li>
-                  <li><a href="#belts">Weight Belts</a></li>
-                  <li><a href="#wrist-wraps">Wrist Wraps</a></li>
-                  <li><a href="#phone-holders">Phone Holders</a></li>
-                  <li><a href="#towels">Gym Towels</a></li>
-                  <li><a href="#locks">Gym Locks</a></li>
-                  <li><a href="#keychains">Keychains</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <a href="accessories.html" data-text="Accessories">Accessories</a>
         </li>
-        <li><a href="evil-arc.html">Evil Arc</a></li>
+        <li><a href="evil-arc.html" data-text="Evil Arc">Evil Arc</a></li>
       </ul>
 
       <div class="nav-right">
@@ -308,7 +62,6 @@
           <span class="vault-count" id="vaultCount">0</span>
         </div>
 
-        <!-- FIXED: Changed from div to button and added ID to match script.js -->
         <button
           class="hamburger"
           id="hamburger"
@@ -326,9 +79,9 @@
 
     <div class="vault-panel" id="vaultPanel">
       <div class="vault-header">
-        <div class="vault-title">
+        <div class="vault-title" id="vaultTitle">
           <span>🗝️</span>
-          <span>Villain Vault</span>
+          <span>Vault</span>
         </div>
         <button class="vault-close" id="vaultClose">×</button>
       </div>
@@ -349,14 +102,13 @@
           <span class="vault-total-amount" id="vaultTotal">$0.00</span>
         </div>
         <button class="vault-checkout-btn" id="checkoutBtn">
-          Secure Your Arsenal
+          Secure Your Order
         </button>
       </div>
     </div>
 
     <section class="hero-section">
       <div class="video-background">
-        <!-- FIXED: Added onerror handler and fallback div -->
         <video
           autoplay
           muted
@@ -365,8 +117,8 @@
           id="heroVideo"
           onerror="document.getElementById('videoFallback').style.display='block'; this.style.display='none'; this.parentElement.querySelector('.video-overlay').style.display='block';"
         >
-          <source src="splat.mp4" type="video/mp4" />
-          <source src="your-video.webm" type="video/webm" />
+          <source src="videos/beautifully-dangerous.mp4" type="video/mp4" />
+          <source src="videos/beautifully-dangerous.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
         <div
@@ -385,7 +137,7 @@
       </div>
 
       <div class="tagline">
-        <h1 class="glitch-text" data-text="Embrace Your Dark Side">
+        <h1 class="glitch-text" data-text="Beautifully Dangerous">
           <strong>Beautifully Dangerous</strong>
         </h1>
       </div>
@@ -411,19 +163,18 @@
 
         <div class="carousel-container">
           <div class="products-carousel" id="carousel">
-            <!-- FIXED: Added onclick handler to all product buttons -->
             <div class="product-card">
               <div class="product-image">🦹‍♀️</div>
               <div class="product-info">
                 <h3 class="product-name">Shadow Strike Leggings</h3>
-                <p class="product-price">$69.99</p>
+                <p class="product-price">$75.99</p>
                 <p class="product-desc">
                   Seamless, high-waisted fit for maximum power.
                 </p>
                 <button
                   class="add-to-cart"
                   data-product="Shadow Strike Leggings"
-                  data-price="69.99"
+                  data-price="75.99"
                   data-icon="🦹‍♀️"
                   onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
@@ -436,14 +187,14 @@
               <div class="product-image">💖</div>
               <div class="product-info">
                 <h3 class="product-name">Empress Sports Bra</h3>
-                <p class="product-price">$49.99</p>
+                <p class="product-price">$55.99</p>
                 <p class="product-desc">
                   High-impact support with a commanding back detail.
                 </p>
                 <button
                   class="add-to-cart"
                   data-product="Empress Sports Bra"
-                  data-price="49.99"
+                  data-price="55.99"
                   data-icon="💖"
                   onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
@@ -476,14 +227,14 @@
               <div class="product-image">🕶️</div>
               <div class="product-info">
                 <h3 class="product-name">Venom Tank Top</h3>
-                <p class="product-price">$39.99</p>
+                <p class="product-price">$45.99</p>
                 <p class="product-desc">
                   Racerback cut with sheer ventilation panels.
                 </p>
                 <button
                   class="add-to-cart"
                   data-product="Venom Tank Top"
-                  data-price="39.99"
+                  data-price="45.99"
                   data-icon="🕶️"
                   onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
@@ -496,14 +247,14 @@
               <div class="product-image">👠</div>
               <div class="product-info">
                 <h3 class="product-name">Dominatrix Joggers</h3>
-                <p class="product-price">$84.99</p>
+                <p class="product-price">$89.99</p>
                 <p class="product-desc">
                   Slouchy fit with metal accent hardware.
                 </p>
                 <button
                   class="add-to-cart"
                   data-product="Dominatrix Joggers"
-                  data-price="84.99"
+                  data-price="89.99"
                   data-icon="👠"
                   onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
@@ -516,14 +267,14 @@
               <div class="product-image">⚫</div>
               <div class="product-info">
                 <h3 class="product-name">Black Widow Cycling Shorts</h3>
-                <p class="product-price">$54.99</p>
+                <p class="product-price">$59.99</p>
                 <p class="product-desc">
                   Squat-proof compression fit, 8-inch inseam.
                 </p>
                 <button
                   class="add-to-cart"
                   data-product="Black Widow Cycling Shorts"
-                  data-price="54.99"
+                  data-price="59.99"
                   data-icon="⚫"
                   onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
                 >
@@ -573,26 +324,6 @@
             </div>
 
             <div class="product-card">
-              <div class="product-image">🦹‍♀️</div>
-              <div class="product-info">
-                <h3 class="product-name">Shadow Strike Leggings (Black)</h3>
-                <p class="product-price">$69.99</p>
-                <p class="product-desc">
-                  The foundational piece of the entire collection.
-                </p>
-                <button
-                  class="add-to-cart"
-                  data-product="Shadow Strike Leggings (Black)"
-                  data-price="69.99"
-                  data-icon="🦹‍♀️"
-                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-                >
-                  Secure Item
-                </button>
-              </div>
-            </div>
-
-            <div class="product-card">
               <div class="product-image">🖤</div>
               <div class="product-info">
                 <h3 class="product-name">The Obsidian Set</h3>
@@ -611,6 +342,184 @@
                 </button>
               </div>
             </div>
+
+            <div class="product-card">
+              <div class="product-image">🧥</div>
+              <div class="product-info">
+                <h3 class="product-name">Reborn Tactical Jacket</h3>
+                <p class="product-price">$129.99</p>
+                <p class="product-desc">
+                  Military-grade materials with reinforced stitching.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Reborn Tactical Jacket"
+                  data-price="129.99"
+                  data-icon="🧥"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-image">👚</div>
+              <div class="product-info">
+                <h3 class="product-name">Villain's Pride Crop Top</h3>
+                <p class="product-price">$49.99</p>
+                <p class="product-desc">
+                  Soft cotton blend with aggressive graphic design.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Villain's Pride Crop Top"
+                  data-price="49.99"
+                  data-icon="👚"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-image">🩳</div>
+              <div class="product-info">
+                <h3 class="product-name">Power Strike Shorts</h3>
+                <p class="product-price">$79.99</p>
+                <p class="product-desc">
+                  Flexible performance fabric for maximum mobility.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Power Strike Shorts"
+                  data-price="79.99"
+                  data-icon="🩳"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-image">🎭</div>
+              <div class="product-info">
+                <h3 class="product-name">Dual Identity Mask</h3>
+                <p class="product-price">$39.99</p>
+                <p class="product-desc">
+                  Conceal your true intentions. Every villain needs anonymity.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Dual Identity Mask"
+                  data-price="39.99"
+                  data-icon="🎭"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-image">🔥</div>
+              <div class="product-info">
+                <h3 class="product-name">Inferno Bomber</h3>
+                <p class="product-price">$149.99</p>
+                <p class="product-desc">
+                  Heat-resistant outer shell. Make your entrance unforgettable.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Inferno Bomber"
+                  data-price="149.99"
+                  data-icon="🔥"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-image">🎽</div>
+              <div class="product-info">
+                <h3 class="product-name">Razor Edge Denim</h3>
+                <p class="product-price">$119.99</p>
+                <p class="product-desc">
+                  Reinforced denim with hidden blade pockets.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Razor Edge Denim"
+                  data-price="119.99"
+                  data-icon="🗡️"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-image">💣</div>
+              <div class="product-info">
+                <h3 class="product-name">Explosive Style Tee</h3>
+                <p class="product-price">$44.99</p>
+                <p class="product-desc">
+                  Make a statement that resonates. Impact-resistant graphic
+                  print.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Explosive Style Tee"
+                  data-price="44.99"
+                  data-icon="💣"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-image">🐍</div>
+              <div class="product-info">
+                <h3 class="product-name">Venom Strike Gloves</h3>
+                <p class="product-price">$59.99</p>
+                <p class="product-desc">
+                  Grip technology that never lets go. Strike with precision.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Venom Strike Gloves"
+                  data-price="59.99"
+                  data-icon="🐍"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-image">👑</div>
+              <div class="product-info">
+                <h3 class="product-name">Kingpin Crown Cap</h3>
+                <p class="product-price">$54.99</p>
+                <p class="product-desc">
+                  Rule your empire in style. Premium embroidered authority.
+                </p>
+                <button
+                  class="add-to-cart"
+                  data-product="Kingpin Crown Cap"
+                  data-price="54.99"
+                  data-icon="👑"
+                  onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
+                >
+                  Secure Item
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -621,21 +530,20 @@
     </section>
 
     <section class="featured-section">
-      <h2 class="section-title">Items of Consequence</h2>
+      <h2 class="section-title">Featured Gear</h2>
       <div class="products-grid">
-        <!-- FIXED: Added onclick handler to all product buttons -->
         <div class="product-card">
           <div class="product-image">🩱</div>
           <div class="product-info">
-            <h3 class="product-name">Shadow Tech Leggings</h3>
-            <p class="product-price">$89.99</p>
+            <h3 class="product-name">Shadow Strike Leggings</h3>
+            <p class="product-price">$75.99</p>
             <p class="product-desc">
-              Premium moisture-wicking fabric with a flattering sculpt fit.
+              High-waisted, sculpting fit. Perfect for all forms of dominance.
             </p>
             <button
               class="add-to-cart"
-              data-product="Shadow Tech Leggings"
-              data-price="89.99"
+              data-product="Shadow Strike Leggings"
+              data-price="75.99"
               data-icon="🩱"
               onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
@@ -645,19 +553,18 @@
         </div>
 
         <div class="product-card">
-          <div class="product-image">🧥</div>
+          <div class="product-image">💖</div>
           <div class="product-info">
-            <h3 class="product-name">Reborn Tactical Jacket</h3>
-            <p class="product-price">$129.99</p>
+            <h3 class="product-name">Empress Sports Bra</h3>
+            <p class="product-price">$55.99</p>
             <p class="product-desc">
-              Military-grade materials with reinforced stitching. Rise from the
-              ashes stronger than before.
+              High-impact support with a commanding back detail. Lead the world.
             </p>
             <button
               class="add-to-cart"
-              data-product="Reborn Tactical Jacket"
-              data-price="129.99"
-              data-icon="🧥"
+              data-product="Empress Sports Bra"
+              data-price="55.99"
+              data-icon="💖"
               onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
@@ -666,40 +573,18 @@
         </div>
 
         <div class="product-card">
-          <div class="product-image">👚</div>
+          <div class="product-image">⚡</div>
           <div class="product-info">
-            <h3 class="product-name">Villain's Pride Crop Top</h3>
-            <p class="product-price">$49.99</p>
-            <p class="product-desc">
-              Soft cotton blend with aggressive graphic design. Wear your
-              intentions boldly.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Villain's Pride Crop Top"
-              data-price="49.99"
-              data-icon="👚"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">🩳</div>
-          <div class="product-info">
-            <h3 class="product-name">Power Strike Shorts</h3>
+            <h3 class="product-name">Chaos Cropped Hoodie</h3>
             <p class="product-price">$79.99</p>
             <p class="product-desc">
-              Flexible performance fabric for maximum mobility. Move like
-              lightning strikes.
+              Soft fleece, perfect for making a dangerous entrance.
             </p>
             <button
               class="add-to-cart"
-              data-product="Power Strike Shorts"
+              data-product="Chaos Cropped Hoodie"
               data-price="79.99"
-              data-icon="🩳"
+              data-icon="⚡"
               onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
@@ -708,18 +593,18 @@
         </div>
 
         <div class="product-card">
-          <div class="product-image">🎭</div>
+          <div class="product-image">🕶️</div>
           <div class="product-info">
-            <h3 class="product-name">Dual Identity Mask</h3>
-            <p class="product-price">$39.99</p>
+            <h3 class="product-name">Venom Tank Top</h3>
+            <p class="product-price">$45.99</p>
             <p class="product-desc">
-              Conceal your true intentions. Every villain needs anonymity.
+              Racerback cut with sheer ventilation panels.
             </p>
             <button
               class="add-to-cart"
-              data-product="Dual Identity Mask"
-              data-price="39.99"
-              data-icon="🎭"
+              data-product="Venom Tank Top"
+              data-price="45.99"
+              data-icon="🕶️"
               onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
@@ -728,18 +613,18 @@
         </div>
 
         <div class="product-card">
-          <div class="product-image">🔥</div>
+          <div class="product-image">👠</div>
           <div class="product-info">
-            <h3 class="product-name">Inferno Bomber</h3>
-            <p class="product-price">$149.99</p>
+            <h3 class="product-name">Dominatrix Joggers</h3>
+            <p class="product-price">$89.99</p>
             <p class="product-desc">
-              Heat-resistant outer shell. Make your entrance unforgettable.
+              High-security pockets and a powerful silhouette.
             </p>
             <button
               class="add-to-cart"
-              data-product="Inferno Bomber"
-              data-price="149.99"
-              data-icon="🔥"
+              data-product="Dominatrix Joggers"
+              data-price="89.99"
+              data-icon="👠"
               onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
@@ -748,179 +633,18 @@
         </div>
 
         <div class="product-card">
-          <div class="product-image">👖</div>
+          <div class="product-image">⚫</div>
           <div class="product-info">
-            <h3 class="product-name">Combat Cargo Pants</h3>
-            <p class="product-price">$94.99</p>
-            <p class="product-desc">
-              12 tactical pockets for all your schemes. Ready for any battle.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Combat Cargo Pants"
-              data-price="94.99"
-              data-icon="👖"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">💀</div>
-          <div class="product-info">
-            <h3 class="product-name">Death's Door Vest</h3>
-            <p class="product-price">$109.99</p>
-            <p class="product-desc">
-              Bulletproof style meets actual protection. Death can wait.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Death's Door Vest"
-              data-price="109.99"
-              data-icon="💀"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">🌙</div>
-          <div class="product-info">
-            <h3 class="product-name">Nightfall Cloak</h3>
-            <p class="product-price">$179.99</p>
-            <p class="product-desc">
-              Disappear into darkness. Premium stealth-weave technology.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Nightfall Cloak"
-              data-price="179.99"
-              data-icon="🌙"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">👁️</div>
-          <div class="product-info">
-            <h3 class="product-name">All-Seeing Shades</h3>
-            <p class="product-price">$69.99</p>
-            <p class="product-desc">
-              UV protection meets surveillance style. See everything, reveal
-              nothing.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="All-Seeing Shades"
-              data-price="69.99"
-              data-icon="👁️"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">🗡️</div>
-          <div class="product-info">
-            <h3 class="product-name">Razor Edge Denim</h3>
-            <p class="product-price">$119.99</p>
-            <p class="product-desc">
-              Reinforced denim with hidden blade pockets. Style that cuts deep.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Razor Edge Denim"
-              data-price="119.99"
-              data-icon="🗡️"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">🦇</div>
-          <div class="product-info">
-            <h3 class="product-name">Nocturnal Wings Jacket</h3>
-            <p class="product-price">$159.99</p>
-            <p class="product-desc">
-              Spread your wings and embrace the darkness. Aerodynamic design.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Nocturnal Wings Jacket"
-              data-price="159.99"
-              data-icon="🦇"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">💣</div>
-          <div class="product-info">
-            <h3 class="product-name">Explosive Style Tee</h3>
-            <p class="product-price">$44.99</p>
-            <p class="product-desc">
-              Make a statement that resonates. Impact-resistant graphic print.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Explosive Style Tee"
-              data-price="44.99"
-              data-icon="💣"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">🐍</div>
-          <div class="product-info">
-            <h3 class="product-name">Venom Strike Gloves</h3>
+            <h3 class="product-name">Black Widow Cycling Shorts</h3>
             <p class="product-price">$59.99</p>
             <p class="product-desc">
-              Grip technology that never lets go. Strike with precision.
+              Tactical grip and a compression fit for maximum impact.
             </p>
             <button
               class="add-to-cart"
-              data-product="Venom Strike Gloves"
+              data-product="Black Widow Cycling Shorts"
               data-price="59.99"
-              data-icon="🐍"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">👑</div>
-          <div class="product-info">
-            <h3 class="product-name">Kingpin Crown Cap</h3>
-            <p class="product-price">$54.99</p>
-            <p class="product-desc">
-              Rule your empire in style. Premium embroidered authority.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Kingpin Crown Cap"
-              data-price="54.99"
-              data-icon="👑"
+              data-icon="⚫"
               onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
@@ -931,15 +655,15 @@
         <div class="product-card">
           <div class="product-image">🔮</div>
           <div class="product-info">
-            <h3 class="product-name">Mystic Manipulation Robe</h3>
-            <p class="product-price">$189.99</p>
+            <h3 class="product-name">Mystic Long Sleeve</h3>
+            <p class="product-price">$59.99</p>
             <p class="product-desc">
-              Channel dark energies in comfort. Enchanted silk blend.
+              Thumbholes and quick-dry fabric for seamless transition.
             </p>
             <button
               class="add-to-cart"
-              data-product="Mystic Manipulation Robe"
-              data-price="189.99"
+              data-product="Mystic Long Sleeve"
+              data-price="59.99"
               data-icon="🔮"
               onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
@@ -949,78 +673,18 @@
         </div>
 
         <div class="product-card">
-          <div class="product-image">⛓️</div>
+          <div class="product-image">👑</div>
           <div class="product-info">
-            <h3 class="product-name">Chain Reaction Belt</h3>
-            <p class="product-price">$74.99</p>
+            <h3 class="product-name">Tyrant Tee</h3>
+            <p class="product-price">$44.99</p>
             <p class="product-desc">
-              Industrial strength meets street style. Unbreakable bonds.
+              Oversized fit with a cropped hem. Subtle strength.
             </p>
             <button
               class="add-to-cart"
-              data-product="Chain Reaction Belt"
-              data-price="74.99"
-              data-icon="⛓️"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">🦂</div>
-          <div class="product-info">
-            <h3 class="product-name">Scorpion Strike Boots</h3>
-            <p class="product-price">$139.99</p>
-            <p class="product-desc">
-              Steel-toed dominance. Leave your mark with every step.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Scorpion Strike Boots"
-              data-price="139.99"
-              data-icon="🦂"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">🎩</div>
-          <div class="product-info">
-            <h3 class="product-name">Gentleman's Menace Hat</h3>
-            <p class="product-price">$84.99</p>
-            <p class="product-desc">
-              Sophisticated villainy. Classic style, sinister intentions.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Gentleman's Menace Hat"
-              data-price="84.99"
-              data-icon="🎩"
-              onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
-            >
-              Secure Item
-            </button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <div class="product-image">🌩️</div>
-          <div class="product-info">
-            <h3 class="product-name">Storm Bringer Windbreaker</h3>
-            <p class="product-price">$99.99</p>
-            <p class="product-desc">
-              Weather-resistant chaos. Command the elements in style.
-            </p>
-            <button
-              class="add-to-cart"
-              data-product="Storm Bringer Windbreaker"
-              data-price="99.99"
-              data-icon="🌩️"
+              data-product="Tyrant Tee"
+              data-price="44.99"
+              data-icon="👑"
               onclick="addToVaultWithAuth(this.getAttribute('data-product'), this.getAttribute('data-price'), this.getAttribute('data-icon'))"
             >
               Secure Item
@@ -1035,88 +699,78 @@
         <div class="categories-hero">
           <h2 class="categories-hero-title">Women's Villain Arsenal</h2>
           <p class="categories-hero-desc">
-            Women's workout gear designed for those who refuse to be
-            underestimated. Powerful and precise, we create villain attire that
-            commands respect. Since our rise to power, we've designed the fierce
-            athletic wear for those who embrace their dark ambitions.
+            Women's workout gear designed to help you command fear and ascend to
+            dominance. Functional and menacing, we create attire you'll conquer
+            in. Since our rise to power, we've designed the dark activewear we
+            want to wear, for powerful female practitioners.
           </p>
         </div>
 
         <div class="categories-grid">
           <div class="category-card">
-            <h3 class="category-title">🩱 Leggings & Tights</h3>
+            <h3 class="category-title">🩱 Leggings & Shorts</h3>
             <ul class="category-links">
-              <li><a href="#gym-leggings">Women's Gym Leggings</a></li>
-              <li><a href="#high-waisted">High Waisted Leggings</a></li>
-              <li><a href="#seamless">Seamless Leggings</a></li>
-              <li><a href="#cycling-shorts">Cycling Shorts</a></li>
-              <li><a href="#flare">Flare Leggings</a></li>
-              <li><a href="#training-tights">Training Tights</a></li>
+              <li><a href="#high-waist">High-Waist Leggings</a></li>
+              <li><a href="#scrunch">Scrunch Leggings</a></li>
+              <li><a href="#cycling">Cycling Shorts</a></li>
+              <li><a href="#pocket">Shorts with Pockets</a></li>
+              <li><a href="#squat">Squat-Proof Wear</a></li>
+              <li><a href="#joggers">Joggers & Sweatpants</a></li>
             </ul>
           </div>
 
           <div class="category-card">
-            <h3 class="category-title">👚 Tops & Sports Bras</h3>
+            <h3 class="category-title">💖 Sports Bras & Tops</h3>
             <ul class="category-links">
-              <li><a href="#sports-bras">Sports Bras</a></li>
-              <li><a href="#crop-tops">Crop Tops</a></li>
-              <li><a href="#tank-tops">Tank Tops</a></li>
-              <li><a href="#long-sleeve">Long Sleeve Tops</a></li>
-              <li><a href="#oversized-tees">Oversized T-Shirts</a></li>
-              <li><a href="#hoodies">Hoodies & Sweatshirts</a></li>
-              <li><a href="#graphic-tees">Graphic Tees</a></li>
+              <li><a href="#high-impact">High-Impact Bras</a></li>
+              <li><a href="#low-impact">Low-Impact Bras</a></li>
+              <li><a href="#crop">Crop Tops & Tees</a></li>
+              <li><a href="#tanks">Tank Tops & Vests</a></li>
+              <li><a href="#compression">Compression Tops</a></li>
+              <li><a href="#hoodies">Hoodies & Outerwear</a></li>
             </ul>
           </div>
 
           <div class="category-card">
-            <h3 class="category-title">👖 Women's Bottoms</h3>
+            <h3 class="category-title">👑 The Apex Collection</h3>
             <ul class="category-links">
-              <li><a href="#joggers">Joggers</a></li>
-              <li><a href="#shorts">Gym Shorts</a></li>
-              <li><a href="#bike-shorts">Bike Shorts</a></li>
-              <li><a href="#sweatpants">Sweatpants</a></li>
-              <li><a href="#tracksuits">Tracksuits</a></li>
-              <li><a href="#skirts">Athletic Skirts</a></li>
-              <li><a href="#cargo-pants">Cargo Pants</a></li>
+              <li><a href="#obsidian">The Obsidian Set</a></li>
+              <li><a href="#empowerment">Empress Sports Bras</a></li>
+              <li><a href="#shadow">Shadow Strike Leggings</a></li>
+              <li><a href="#tyrant">Tyrant Tees</a></li>
+              <li><a href="#dominatrix">Dominatrix Joggers</a></li>
+              <li><a href="#blackwidow">Black Widow Shorts</a></li>
             </ul>
           </div>
 
           <div class="category-card">
-            <h3 class="category-title">👜 Women's Accessories</h3>
+            <h3 class="category-title">🎒 Accessories</h3>
             <ul class="category-links">
-              <li><a href="#gym-bags">Gym Bags</a></li>
-              <li><a href="#backpacks">Backpacks</a></li>
-              <li><a href="#water-bottles">Water Bottles</a></li>
-              <li><a href="#headbands">Headbands</a></li>
-              <li><a href="#socks">Athletic Socks</a></li>
-              <li><a href="#caps">Caps & Hats</a></li>
-              <li><a href="#gloves">Training Gloves</a></li>
+              <li><a href="#bags">Gym & Duffle Bags</a></li>
+              <li><a href="#water">Water Bottles</a></li>
+              <li><a href="#headwear">Hats & Caps</a></li>
+              <li><a href="#socks">Socks</a></li>
             </ul>
           </div>
         </div>
 
         <div class="info-boxes">
           <div class="info-box">
-            <div class="info-icon">💪</div>
-            <h3 class="info-box-title">Designed for Domination</h3>
+            <div class="info-icon">🏋️</div>
+            <h3 class="info-box-title">Activewear Built for the Empress</h3>
             <p class="info-box-text">
-              Our women's collection was forged with power in mind. Villain
-              Rising creates gear for those who train with purpose and ambition.
-              From intimidating sports bras to performance leggings engineered
-              for unstoppable movement, you will always feel fierce and
-              formidable in every session.
+              From the commanding fit of our leggings to the formidable support
+              of our bras, every piece is designed to facilitate superior
+              performance and inspire terror.
             </p>
           </div>
 
           <div class="info-box">
             <div class="info-icon">⚡</div>
-            <h3 class="info-box-title">Activewear for Queens</h3>
+            <h3 class="info-box-title">Domination Through Darkness</h3>
             <p class="info-box-text">
-              We create the armor that helps every woman embrace her powerful
-              potential – no matter the arena. Our range of Women's Activewear
-              is designed to give you the commanding presence you deserve,
-              whether conquering weights, dominating cardio, or ruling the
-              studio.
+              Our range of women's apparel is built to give you the confidence
+              to dominate, crush your enemies, and command every room you enter.
             </p>
           </div>
         </div>
@@ -1150,12 +804,12 @@
           <ul class="footer-links">
             <li><a href="#stores">Stores</a></li>
             <li><a href="#refer">Refer a Friend</a></li>
-            <li><a href="#central">Villain Central</a></li>
-            <li><a href="#loyalty">Villain Loyalty</a></li>
+            <li><a href="#central">Brand Central</a></li>
+            <li><a href="#loyalty">Loyalty Program</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#careers">Careers</a></li>
             <li><a href="#student">Student Discount</a></li>
-            <li><a href="#training">Training App</a></li>
+            <li><a href="#training">Training Program</a></li>
             <li><a href="#military">Military Discount</a></li>
             <li><a href="#accessibility">Accessibility Statement</a></li>
             <li><a href="#factory">Factory List</a></li>
@@ -1164,10 +818,8 @@
         </div>
 
         <div class="footer-column">
-          <h3 class="footer-title">MORE ABOUT VILLAIN RISING</h3>
-          <ul class="footer-links">
-            <li><a href="#blog">Blog</a></li>
-          </ul>
+          <h3 class="footer-title">MORE ABOUT THE BRAND</h3>
+          <ul class="footer-links"></ul>
 
           <div class="email-signup">
             <h4 class="signup-title">Email Sign Up</h4>
@@ -1178,9 +830,7 @@
                 class="email-input"
                 required
               />
-              <button type="submit" class="signup-btn">
-                Join the Dark Side
-              </button>
+              <button type="submit" class="signup-btn">Subscribe Now</button>
             </form>
           </div>
         </div>
@@ -1217,8 +867,8 @@
       </div>
     </footer>
 
-    <!-- FIXED: Added auth.js and fixed order -->
     <script src="auth.js"></script>
     <script src="script.js"></script>
+    <script src="heroic/heroic-theme.js"></script>
   </body>
 </html>

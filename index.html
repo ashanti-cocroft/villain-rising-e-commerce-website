@@ -13,9 +13,13 @@
     <title>Villain Rising - Embrace Your Dark Side</title>
   </head>
   <body>
+    <!-- CRITICAL: Divine overlays for Hero theme -->
+    <div class="divine-overlay" id="divineOverlay"></div>
+    <div class="holy-glow" id="holyGlow"></div>
+
+    <!-- Villain theme overlays -->
     <div class="noise-overlay"></div>
     <div class="scanlines"></div>
-
     <div class="glitch-overlay" id="glitchOverlay"></div>
     <div class="static-noise" id="staticNoise"></div>
 
@@ -69,7 +73,7 @@
                 </ul>
               </div>
               <div class="mega-menu-column">
-                <h3 class="mega-menu-title">🛍️ Products</h3>
+                <h3 class="mega-menu-title">🛒 Products</h3>
                 <ul class="mega-menu-links">
                   <li><a href="#all-products">All Products</a></li>
                   <li><a href="#tshirts">T-Shirts & Tops</a></li>
@@ -247,12 +251,13 @@
           muted
           loop
           playsinline
+          webkit-playsinline
           id="heroVideo"
           aria-label="Background video"
           onerror="document.getElementById('videoFallback').style.display='block'; this.style.display='none'; this.parentElement.querySelector('.video-overlay').style.display='block';"
         >
           <source src="videos/villian-rising.mp4" type="video/mp4" />
-          <source src="your-video.webm" type="video/webm" />
+          <source src="videos/villian-rising.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
         <div
@@ -262,7 +267,7 @@
             width: 100%;
             height: 100%;
             background: #220000;
-            background-image: url('https://placehold.co/1920x1080/0A0505/FFFFFF?text=SITE+LOADING+FALLBACK');
+            background-image: url('https://placehold.co/1920x1080/0A0505/FFFFFF?text=VILLAIN+RISING');
             background-size: cover;
             background-position: center;
           "

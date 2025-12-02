@@ -1,0 +1,251 @@
+/* heroic-arc.css - Cosmic Ascendance Overrides for Evil Arc */
+
+/* Import the base Villain styles to override them */
+@import url("evil-style.css");
+
+/* ===========================================
+   COSMIC ARC GLOBAL STYLES (Overrides)
+   =========================================== */
+
+/* Base background for a deep space feel */
+body {
+  background: #0f0a1e !important;
+  color: #e6e6fa !important;
+}
+
+/* Back to Home Button (Hidden but overridden for consistency) */
+.back-home {
+  border-color: rgba(147, 112, 219, 0.4) !important;
+  background: rgba(72, 61, 139, 0.1) !important;
+}
+.back-home:hover {
+  border-color: #9370db !important;
+  box-shadow: 0 0 20px rgba(147, 112, 219, 0.4) !important;
+  background: rgba(72, 61, 139, 0.2) !important;
+}
+
+/* Noise/Scanlines - Fading them out or replacing with a starry effect */
+.noise-overlay,
+.scanlines {
+  opacity: 0.1;
+  background: none;
+}
+.noise-overlay {
+  background-image: radial-gradient(
+      circle at 80% 10%,
+      rgba(230, 230, 250, 0.1) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 20% 90%,
+      rgba(147, 112, 219, 0.15) 1px,
+      transparent 1px
+    ) !important;
+  background-size: 200px 200px !important;
+  animation: none !important;
+}
+
+/* Animated Background (Deep Space Nebulae) */
+.background-animation {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(147, 112, 219, 0.15) 0%,
+    rgba(15, 10, 30, 1) 70%
+  ) !important;
+}
+
+.background-animation::before {
+  /* Faint blue/violet glow */
+  background: radial-gradient(
+      circle at 20% 50%,
+      rgba(176, 196, 222, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(147, 112, 219, 0.1) 0%,
+      transparent 50%
+    ) !important;
+}
+
+.background-animation::after {
+  /* Faint blue grid lines */
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(176, 196, 222, 0.03) 2px,
+    rgba(176, 196, 222, 0.03) 4px
+  ) !important;
+}
+
+/* Particle Effect (Silver/Violet Light) */
+.particle {
+  background: rgba(230, 230, 250, 0.8) !important;
+  box-shadow: 0 0 15px rgba(230, 230, 250, 0.9),
+    0 0 30px rgba(147, 112, 219, 0.5) !important;
+}
+
+/* --- 3D LOGO AND TEXT --- */
+
+.vr-text {
+  /* Silver/Violet Gradient for 3D Text */
+  background: linear-gradient(
+    135deg,
+    #e6e6fa 0%,
+    #b0c4de 25%,
+    #9370db 50%,
+    #e6e6fa 75%,
+    #b0c4de 100%
+  ) !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 30px rgba(147, 112, 219, 0.8))
+    drop-shadow(0 0 60px rgba(176, 196, 222, 0.5))
+    drop-shadow(0 10px 40px rgba(0, 0, 0, 0.8)) !important;
+}
+
+.subtitle-text {
+  color: rgba(176, 196, 222, 0.9) !important;
+}
+
+.coming-soon-title {
+  /* Silver/Indigo Shimmer */
+  background: linear-gradient(90deg, #e6e6fa, #9370db, #b0c4de) !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 40px rgba(147, 112, 219, 0.6)) !important;
+}
+
+.coming-soon-title::after {
+  /* Violet separator line */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #9370db,
+    transparent
+  ) !important;
+  box-shadow: 0 0 20px rgba(147, 112, 219, 0.8) !important;
+}
+
+.description {
+  color: rgba(230, 230, 250, 0.7) !important;
+}
+
+/* --- COUNTDOWN TIMER --- */
+
+.countdown-item {
+  background: rgba(147, 112, 219, 0.05) !important;
+  border: 2px solid rgba(147, 112, 219, 0.3) !important;
+}
+.countdown-item:hover {
+  border-color: rgba(176, 196, 222, 0.6) !important;
+  box-shadow: 0 10px 30px rgba(147, 112, 219, 0.4) !important;
+}
+.countdown-number {
+  color: #b0c4de !important; /* Silver */
+  text-shadow: 0 0 20px rgba(147, 112, 219, 0.6) !important;
+}
+.countdown-label {
+  color: rgba(230, 230, 250, 0.7) !important;
+}
+
+/* --- EMAIL SIGNUP --- */
+
+.signup-title {
+  color: #e6e6fa !important;
+}
+
+.email-input {
+  background: rgba(147, 112, 219, 0.05) !important;
+  border: 2px solid rgba(147, 112, 219, 0.3) !important;
+  color: #e6e6fa !important;
+}
+.email-input::placeholder {
+  color: rgba(230, 230, 250, 0.4) !important;
+}
+.email-input:focus {
+  border-color: #9370db !important;
+  box-shadow: 0 0 30px rgba(147, 112, 219, 0.5) !important;
+}
+
+.signup-btn {
+  /* Purple/Silver Gradient */
+  background: linear-gradient(135deg, #483d8b, #9370db) !important;
+  color: #e6e6fa !important;
+  box-shadow: 0 5px 20px rgba(72, 61, 139, 0.4) !important;
+}
+.signup-btn:hover {
+  background: linear-gradient(135deg, #5b4da6, #a787ed) !important;
+  box-shadow: 0 8px 30px rgba(147, 112, 219, 0.6) !important;
+}
+
+/* Social Links */
+.social-link {
+  background: rgba(147, 112, 219, 0.1) !important;
+  border: 2px solid rgba(147, 112, 219, 0.3) !important;
+  color: #e6e6fa !important;
+}
+.social-link:hover {
+  border-color: #9370db !important;
+  background: rgba(147, 112, 219, 0.2) !important;
+  box-shadow: 0 10px 25px rgba(72, 61, 139, 0.4) !important;
+}
+
+/* Loading Progress */
+.loading-text {
+  color: rgba(230, 230, 250, 0.8) !important;
+}
+.loading-percentage {
+  color: #b0c4de !important;
+  text-shadow: 0 0 10px rgba(147, 112, 219, 0.6) !important;
+}
+.loading-bar-bg {
+  background: rgba(230, 230, 250, 0.05) !important;
+  border: 1px solid rgba(147, 112, 219, 0.2) !important;
+}
+.loading-bar {
+  /* Indigo/Violet/Silver Gradient */
+  background: linear-gradient(
+    90deg,
+    #483d8b,
+    #9370db,
+    #b0c4de,
+    #9370db,
+    #483d8b
+  ) !important;
+  box-shadow: 0 0 20px rgba(147, 112, 219, 0.8) !important;
+}
+
+/* Footer Tagline */
+.footer-tagline {
+  color: rgba(230, 230, 250, 0.5) !important;
+}
+.footer-tagline strong {
+  color: #b0c4de !important;
+  text-shadow: 0 0 10px rgba(147, 112, 219, 0.6) !important;
+}
+
+/* Success Message */
+.success-message {
+  background: rgba(147, 112, 219, 0.1) !important;
+  border: 2px solid rgba(147, 112, 219, 0.3) !important;
+  color: rgb(176, 196, 222) !important;
+}
+
+/* Navbar styles on the arc page */
+.navbar {
+  background: rgba(15, 10, 30, 0.95) !important;
+  border-bottom: 1px solid rgba(147, 112, 219, 0.2) !important;
+}
+.logo {
+  color: #e6e6fa !important;
+  text-shadow: 0 0 10px rgba(147, 112, 219, 0.5) !important;
+}
+.nav-link a {
+  color: #e6e6fa !important;
+}
+.nav-link a:hover {
+  color: #9370db !important;
+}
+.nav-right span {
+  color: #9370db !important;
+}

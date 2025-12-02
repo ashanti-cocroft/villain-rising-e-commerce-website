@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="evil-style.css" />
+    <link rel="stylesheet" href="heroic-arc.css" />
+    <title>Celestial Arc - Ascension Imminent | Celestial Ascent</title>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+
+    <div class="scanlines"></div>
+
+    <nav class="navbar">
+      <div class="logo">Celestial Ascent</div>
+      <ul class="nav-link">
+        <li><a href="index.html">Home</a></li>
+        <li>
+          <a href="men-clothing.html">Men's Clothing</a>
+          <div class="mega-menu">
+            <div class="mega-menu-grid">
+              <div class="mega-menu-column">
+                <h3 class="mega-menu-title">✨ DIVINE SALE MONDAY</h3>
+                <ul class="mega-menu-links">
+                  <li><a href="#all-sale">All Men's Sale</a></li>
+                  <li><a href="#tshirts-sale">Tops from $12</a></li>
+                  <li><a href="#shorts-sale">Shorts From $18</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="women-clothing.html">Women's Clothing</a>
+        </li>
+        <li>
+          <a href="accessories.html">Accessories</a>
+        </li>
+        <li>
+          <a href="heroic-arc.html" style="color: #9370db">Celestial Arc</a>
+        </li>
+      </ul>
+      <div class="nav-right">
+        <span style="color: #9370db; font-size: 0.9rem"
+          >Ascension Protocol</span
+        >
+      </div>
+    </nav>
+
+    <div class="background-animation" id="bgAnimation"></div>
+
+    <div class="coming-soon-container">
+      <div class="logo-3d-container">
+        <div class="logo-3d" id="logo3d">
+          <div class="vr-text">AR</div>
+        </div>
+      </div>
+
+      <p class="subtitle-text">Celestial Ascent Presents</p>
+
+      <h1 class="coming-soon-title">CELESTIAL ARC</h1>
+
+      <p class="description">
+        Your ultimate transformation to grace and power is imminent. Join the
+        champions and witness the dawn of a new era.
+      </p>
+
+      <div class="countdown-container">
+        <div class="countdown-item">
+          <div class="countdown-number" id="days">30</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="hours">12</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="minutes">45</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="seconds">30</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+
+      <div class="email-signup-container">
+        <h2 class="signup-title">Join The Sacred List</h2>
+        <form class="signup-form" id="signupForm">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="email-input"
+            id="emailInput"
+            required
+          />
+          <button type="submit" class="signup-btn">Secure Ascension</button>
+        </form>
+        <div class="success-message" id="successMessage">
+          ✓ You're on the list! Prepare for your ascension.
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="#" class="social-link" title="Instagram">📷</a>
+        <a href="#" class="social-link" title="Twitter">🕊️</a>
+        <a href="#" class="social-link" title="TikTok">✨</a>
+        <a href="#" class="social-link" title="YouTube">📺</a>
+      </div>
+
+      <div class="loading-container">
+        <div class="loading-header">
+          <span class="loading-text">Initializing Celestial Protocol</span>
+          <span class="loading-percentage" id="loadingPercent">0%</span>
+        </div>
+        <div class="loading-bar-bg">
+          <div class="loading-bar" id="loadingBar"></div>
+        </div>
+      </div>
+
+      <p class="footer-tagline">
+        The path to grace is <strong>inevitable</strong>
+      </p>
+    </div>
+
+    <script>
+      // Create floating particles
+      const bgAnimation = document.getElementById("bgAnimation");
+      for (let i = 0; i < 40; i++) {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.animationDelay = Math.random() * 15 + "s";
+        particle.style.animationDuration = Math.random() * 10 + 15 + "s";
+        particle.style.width = Math.random() * 3 + 2 + "px";
+        particle.style.height = particle.style.width;
+        bgAnimation.appendChild(particle);
+      }
+
+      // Loading bar animation
+      const loadingBar = document.getElementById("loadingBar");
+      const loadingPercent = document.getElementById("loadingPercent");
+      let progress = 0;
+
+      const loadingInterval = setInterval(() => {
+        progress += Math.random() * 3;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(loadingInterval);
+          setTimeout(() => {
+            progress = 0;
+            loadingBar.style.width = "0%";
+            loadingPercent.textContent = "0%";
+            loadingAnimation();
+          }, 2000);
+        }
+        loadingBar.style.width = progress + "%";
+        loadingPercent.textContent = Math.floor(progress) + "%";
+      }, 100);
+
+      function loadingAnimation() {
+        const interval = setInterval(() => {
+          progress += Math.random() * 3;
+          if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            setTimeout(() => {
+              progress = 0;
+              loadingBar.style.width = "0%";
+              loadingPercent.textContent = "0%";
+              loadingAnimation();
+            }, 2000);
+          }
+          loadingBar.style.width = progress + "%";
+          loadingPercent.textContent = Math.floor(progress) + "%";
+        }, 100);
+      }
+
+      // Countdown Timer (example: 30 days from now)
+      const countdownDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Email signup form
+      const signupForm = document.getElementById("signupForm");
+      const successMessage = document.getElementById("successMessage");
+      const emailInput = document.getElementById("emailInput");
+
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        successMessage.classList.add("show");
+        emailInput.value = "";
+
+        setTimeout(() => {
+          successMessage.classList.remove("show");
+        }, 5000);
+      });
+
+      // 3D Logo mouse tracking (subtle effect)
+      const logo3d = document.getElementById("logo3d");
+      let isHovering = false;
+
+      logo3d.addEventListener("mouseenter", () => {
+        isHovering = true;
+      });
+
+      logo3d.addEventListener("mouseleave", () => {
+        isHovering = false;
+        logo3d.style.transform = "";
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (!isHovering) return;
+
+        const rect = logo3d.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        const rotateX = (y / rect.height) * 20;
+        const rotateY = (x / rect.width) * 20;
+
+        logo3d.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      });
+    </script>
+  </body>
+</html>
