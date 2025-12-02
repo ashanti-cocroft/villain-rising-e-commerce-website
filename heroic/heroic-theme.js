@@ -6,7 +6,7 @@ const body = document.body;
 // Video Asset Paths
 const VIDEO_PATHS = {
   villain_home: "videos/villian-rising.mp4",
-  hero_home: "videos/celestial-ascent.mp4",
+  hero_home: "videos/heavens-gates.mp4",
   villain_men: "videos/construct-your-chaos.mp4",
   hero_men: "videos/construct-your-ascension.mp4",
   villain_women: "videos/beautifully-dangerous.mp4",
